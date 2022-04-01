@@ -21,7 +21,8 @@ def home():
     # NB: DO NOT add an "index.html" file in your normal templates folder
     # Flask will stop serving this React page correctly
     return flask.render_template("index.html")
-
+    
+app.register_blueprint(bp)
 
 @app.route("/")
 def index():
@@ -57,7 +58,7 @@ def search_maps():
     return flask.jsonify(google_maps)
 
 
-app.register_blueprint(bp)
+
 
 app.run(
     debug=True,
