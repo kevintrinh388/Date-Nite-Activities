@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+}
+
+.list{
+  position: fixed;
+  right: 100vw;
+  left: 0vw;
+  overflow-y: scroll;
+  overflow-x: auto;
+  height: 95vh;
+  width: 35vw;
+}
+
+.map{
+  position: fixed;
+  text-align: center;
+  height: 90vh;
+  width: 55vw;
+  right: 50vw;
+  left: 40vw;
+  top: 5vh;
+}
+
+
+
+
