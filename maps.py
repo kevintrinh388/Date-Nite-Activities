@@ -1,6 +1,4 @@
-from urllib import response
 from dotenv import find_dotenv, load_dotenv
-import requests
 import os
 
 load_dotenv(find_dotenv())

@@ -1,6 +1,5 @@
 
 from dotenv import find_dotenv, load_dotenv
-from numpy import sort
 import requests
 import os
 
