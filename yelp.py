@@ -7,6 +7,7 @@ load_dotenv(find_dotenv())
 
 YELP_KEY = os.getenv("YELP_KEY")
 
+
 def business_search(location, term="", sort_by="best_match", price=None):
     response = requests.get(
         "https://api.yelp.com/v3/businesses/search",
