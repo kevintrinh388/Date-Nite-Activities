@@ -21,7 +21,7 @@ def home():
     # NB: DO NOT add an "index.html" file in your normal templates folder
     # Flask will stop serving this React page correctly
     return flask.render_template("index.html")
-    
+
 app.register_blueprint(bp)
 
 @app.route("/")
@@ -40,12 +40,21 @@ def signup():
 
     return flask.render_template("signup.html")
 
+@app.route("/profile")
+def profile():
+
+    return flask.render_template("profile.html")
+
 
 @app.route("/search_yelp", methods=['GET','POST'])
 def search_yelp():
-    location = flask.request.get_json(force=True)
+    request = flask.request.get_json(force=True)
+    location = request['location']
+    term = request['term']
+    rating = int(request['rating'])
+    price = request['price']
 
-    business_list = business_search(location)
+    business_list = business_search(location,term,rating,price)
     
     return flask.jsonify(business_list)
 
