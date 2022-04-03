@@ -96,7 +96,7 @@ function App() {
                 {activities.location.state},{activities.location.zip_code}
             </h2>
             <h3>
-              <button onClick={() => updateMap(activities.name + activities.location.address1)}>Click to view on map</button>
+              <button onClick={() => updateMap(activities.name.split(' ')[0] + ' ' + activities.location.address1)}>Click to view on map</button>
             </h3>
             <h3><a href={activities.url}>Click to visit yelp page</a></h3>
             <img src={activities.image_url} alt={activities.name} width="400" height="400"></img>
