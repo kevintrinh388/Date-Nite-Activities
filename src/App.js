@@ -1,6 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import './App.css';
 import { useState, useRef, useEffect } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Mynavbar } from './components/Mynavbar';
+
 
 function App() {
   const [activities, setActivities] = useState([]);
@@ -47,18 +50,23 @@ function App() {
   }
 
   function searchButton(){
+    console.log(userLocation)
     searchYelp()
     searchMaps()
   }
 
+  useEffect(() => {searchButton()},[])
 
   return (
     <div className="App">
 
-      {useEffect(() => {searchButton()},[])}
+    <Mynavbar searchButton={searchButton} userLocation={userLocation}/>
 
       <label for="location_search">Explore new places</label>
-      <input id="location_search" type="text" name="location" defaultValue="Atlanta, GA" onChange={(e) => userLocation.current = e.target.value} />
+      <input id="location_search" type="text" name="location" defaultValue="Atlanta, GA" onChange={(e) => userLocation.current = e.target.value}/>      
+
+//       {useEffect(() => {searchButton()},[])}
+
       <button type="button" onClick={() => searchButton()}>Search!</button>
       <a href='/profile'>Profile Page</a>
 
