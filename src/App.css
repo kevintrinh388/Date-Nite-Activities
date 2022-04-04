@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.list{
+.list {
   position: fixed;
   right: 100vw;
   left: 0vw;
@@ -12,7 +12,7 @@
   width: 35vw;
 }
 
-.map{
+.map {
   position: fixed;
   text-align: center;
   height: 90vh;
@@ -21,7 +21,3 @@
   left: 40vw;
   top: 15vh;
 }
-
-
-
-

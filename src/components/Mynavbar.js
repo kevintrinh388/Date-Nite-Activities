@@ -36,7 +36,7 @@ export function Mynavbar(props) {
       </Form>
       <Nav>
       <NavDropdown title="Profile" id="nav-dropdown-dark-example" align="end" menuVariant="dark">
-          <NavDropdown.Item href="#action3">Dashboard</NavDropdown.Item>
+          <NavDropdown.Item href="/profile">Dashboard</NavDropdown.Item>
           <NavDropdown.Item href="#action4"> Edit Profile </NavDropdown.Item>
           <NavDropdown.Item href="#action5">
             Logout
