@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Comp.css"
 import  Navbar  from 'react-bootstrap/Navbar';
 import  NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
@@ -28,7 +29,9 @@ export function Mynavbar(props) {
         <Nav.Link href="/home">Home</Nav.Link>
         <Nav.Link href="#action2">Link</Nav.Link>
       </Nav>
-      <Navbar.Text>Explore new places</Navbar.Text>
+      
+      <Nav>
+      <Navbar.Text className="navtext">Explore new places</Navbar.Text>
       <Form className="d-flex" onSubmit={searchHandler}>
         <FormControl
           type="search"
@@ -40,7 +43,6 @@ export function Mynavbar(props) {
           onChange={(e) => props.userLocation.current = e.target.value}
         />
       </Form>
-      <Nav>
       <NavDropdown title="Profile" id="nav-dropdown-dark-example" align="end" menuVariant="dark">
           <NavDropdown.Item href="/profile">Dashboard</NavDropdown.Item>
           <NavDropdown.Item href="#action4"> Edit Profile </NavDropdown.Item>
