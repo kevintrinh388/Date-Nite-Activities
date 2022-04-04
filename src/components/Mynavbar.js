@@ -9,6 +9,11 @@ import { Form } from 'react-bootstrap';
 
 export function Mynavbar(props) {
 
+  const searchHandler = (e) => {
+    e.preventDefault();
+    props.searchButton();
+  }
+  
   return (
     <Navbar bg="dark" expand="lg" variant='dark'>
     <Container fluid>
@@ -23,7 +28,8 @@ export function Mynavbar(props) {
         <Nav.Link href="/home">Home</Nav.Link>
         <Nav.Link href="#action2">Link</Nav.Link>
       </Nav>
-      <Form className="d-flex" onSubmit={props.searchButton}>
+      <Navbar.Text>Explore new places</Navbar.Text>
+      <Form className="d-flex" onSubmit={searchHandler}>
         <FormControl
           type="search"
           placeholder="Search..."
@@ -38,6 +44,7 @@ export function Mynavbar(props) {
       <NavDropdown title="Profile" id="nav-dropdown-dark-example" align="end" menuVariant="dark">
           <NavDropdown.Item href="/profile">Dashboard</NavDropdown.Item>
           <NavDropdown.Item href="#action4"> Edit Profile </NavDropdown.Item>
+
           <NavDropdown.Item href="#action5">
             Logout
           </NavDropdown.Item>
