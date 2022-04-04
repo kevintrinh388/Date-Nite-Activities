@@ -18,6 +18,7 @@ bp = flask.Blueprint(
 # route for serving React page
 @bp.route("/home")
 def home():
+    """Route for home page on React"""
     # NB: DO NOT add an "index.html" file in your normal templates folder
     # Flask will stop serving this React page correctly
     return flask.render_template("index.html")
@@ -26,28 +27,29 @@ app.register_blueprint(bp)
 
 @app.route("/")
 def index():
-
+    """Route for index page"""
     return flask.redirect(flask.url_for("login"))
 
 
 @app.route("/login")
 def login():
-
+    """Route for login page"""
     return flask.render_template("login.html")
 
 @app.route("/signup")
 def signup():
-
+    """Route for signup page"""
     return flask.render_template("signup.html")
 
 @app.route("/profile")
 def profile():
-
-    return flask.render_template("profile.html")
+    """Route for profile page on React"""
+    return flask.render_template("index.html")
 
 
 @app.route("/search_yelp", methods=['GET','POST'])
 def search_yelp():
+    """Route for loading yelp info"""
     request = flask.request.get_json(force=True)
     location = request['location']
     term = request['term']
@@ -55,14 +57,15 @@ def search_yelp():
     price = request['price']
 
     business_list = business_search(location,term,rating,price)
-    
+
     return flask.jsonify(business_list)
 
 @app.route("/search_maps", methods=['GET','POST'])
 def search_maps():
-    q = flask.request.get_json(force=True)
+    """Route for loading google maps"""
+    query = flask.request.get_json(force=True)
 
-    google_maps = maps_search(q)
+    google_maps = maps_search(query)
 
     return flask.jsonify(google_maps)
 
@@ -72,5 +75,5 @@ def search_maps():
 app.run(
     debug=True,
     host="0.0.0.0",
-    port=int(os.getenv("PORT", 8080)),
+    port=int(os.getenv("PORT", "8080")),
 )

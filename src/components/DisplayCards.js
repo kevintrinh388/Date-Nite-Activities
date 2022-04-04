@@ -12,7 +12,7 @@ export function DisplayCards(props) {
     {props.activities.map((activities) => (
         <div className="activity_list">
 
-          <Card style={{ width: "18rem", left: "70px" }}>
+          <Card border='dark' style={{ width: "18rem", left: "70px" }}>
             <Card.Img variant="top" src={activities.image_url} />
             <Card.Body>
               <Card.Title>{activities.name}</Card.Title>
