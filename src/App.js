@@ -60,15 +60,9 @@ function App() {
   return (
     <div className="App">
 
-    <Mynavbar searchButton={searchButton} userLocation={userLocation}/>
+    <Mynavbar searchButton={searchButton} userLocation={userLocation}/>     
 
-      <label for="location_search">Explore new places</label>
-      <input id="location_search" type="text" name="location" defaultValue="Atlanta, GA" onChange={(e) => userLocation.current = e.target.value}/>      
-
-//       {useEffect(() => {searchButton()},[])}
-
-      <button type="button" onClick={() => searchButton()}>Search!</button>
-      <a href='/profile'>Profile Page</a>
+     {useEffect(() => {searchButton()},[])}
 
       <div className='list'>
         <div className='filter'>
