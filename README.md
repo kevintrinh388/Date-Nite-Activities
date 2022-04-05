@@ -2,7 +2,7 @@ Link to heroku - https://banana-crisp-94556.herokuapp.com/
 
 Repo for personal project testing
 
-React packages: react-router, react-bootstrap, react-icons, styled-components
+React packages: react-router, react-bootstrap, react-icons, styled-components, loglevel
 
 Steps to run:
 1. make new directory
