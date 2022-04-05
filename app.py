@@ -23,7 +23,9 @@ def home():
     # Flask will stop serving this React page correctly
     return flask.render_template("index.html")
 
+
 app.register_blueprint(bp)
+
 
 @app.route("/")
 def index():
@@ -34,33 +36,36 @@ def index():
 @app.route("/login")
 def login():
     """Route for login page"""
-    return flask.render_template("login.html")
+    return flask.render_template("index.html")
+
 
 @app.route("/signup")
 def signup():
     """Route for signup page"""
-    return flask.render_template("signup.html")
+    return flask.render_template("index.html")
+
 
 @app.route("/profile")
 def profile():
     """Route for profile page on React"""
-    return flask.render_template("index.html")
+    return flask.render_template("login.html")
 
 
-@app.route("/search_yelp", methods=['GET','POST'])
+@app.route("/search_yelp", methods=["GET", "POST"])
 def search_yelp():
     """Route for loading yelp info"""
     request = flask.request.get_json(force=True)
-    location = request['location']
-    term = request['term']
-    rating = int(request['rating'])
-    price = request['price']
+    location = request["location"]
+    term = request["term"]
+    rating = int(request["rating"])
+    price = request["price"]
 
-    business_list = business_search(location,term,rating,price)
+    business_list = business_search(location, term, rating, price)
 
     return flask.jsonify(business_list)
 
-@app.route("/search_maps", methods=['GET','POST'])
+
+@app.route("/search_maps", methods=["GET", "POST"])
 def search_maps():
     """Route for loading google maps"""
     query = flask.request.get_json(force=True)
@@ -68,8 +73,6 @@ def search_maps():
     google_maps = maps_search(query)
 
     return flask.jsonify(google_maps)
-
-
 
 
 app.run(
