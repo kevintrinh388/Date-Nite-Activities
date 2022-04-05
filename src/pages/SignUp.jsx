@@ -1,17 +1,24 @@
 import React from 'react';
 import './Pages.css';
 import styled from 'styled-components';
-import { FaGoogle } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import ContinueButton from '../components/auth/ContinueButton';
 import Button from '../components/ Button';
-import Icon from '../components/Icon';
 import Input from '../components/Input';
+import RouteConstants from '../constants/RouteConstants';
 
 function SignUp() {
-  const GoogleBackground = 'linear-gradient((to right, #4e4d4e 43%, #3876f8 43%)';
+  const navigate = useNavigate();
+
+  const login = () => {
+    navigate(RouteConstants.Login);
+  };
+
   return (
     <div className="SignUp">
       <MainContainer>
-        <WelcomeText>SignUp</WelcomeText>
+        <WelcomeText>Sign Up</WelcomeText>
+        <Text onClick={login}>Already have an account? Log in</Text>
         <InputContainer>
           <Input type="text" placeholder="Email" />
           <Input type="password" placeholder="Password" />
@@ -19,12 +26,9 @@ function SignUp() {
         <ButtonContainer>
           <Button content="SIGN UP" />
         </ButtonContainer>
+        <SignUpWith>OR</SignUpWith>
         <HorizontalRule />
-        <IconsContainer>
-          <Icon color={GoogleBackground}>
-            <FaGoogle />
-          </Icon>
-        </IconsContainer>
+        <ContinueButton />
       </MainContainer>
     </div>
   );
@@ -83,6 +87,10 @@ const WelcomeText = styled.h2`
   margin: 3rem 0 2rem 0;
 `;
 
+const Text = styled.h4`
+  cursor: pointer;
+`;
+
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -100,6 +108,10 @@ const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
+const SignUpWith = styled.h5`
+  cursor: pointer;
+`;
+
 const HorizontalRule = styled.hr`
   width: 90%;
   height: 0.3rem;
@@ -109,14 +121,6 @@ const HorizontalRule = styled.hr`
   background-color: #ebd0d0;
   margin: 1.5rem 0 1rem 0;
   backdrop-filter: blur(25px);
-`;
-
-const IconsContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  margin: 2rem 0 3rem 0;
-  width: 80%;
-  cursor: pointer;
 `;
 
 export default SignUp;

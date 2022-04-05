@@ -1,17 +1,24 @@
 import React from 'react';
 import './Pages.css';
 import styled from 'styled-components';
-import { FaGoogle } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import ContinueButton from '../components/auth/ContinueButton';
 import Button from '../components/ Button';
-import Icon from '../components/Icon';
 import Input from '../components/Input';
+import RouteConstants from '../constants/RouteConstants';
 
 function Login() {
-  const GoogleBackground = 'linear-gradient((to right, #4e4d4e 43%, #3876f8 43%)';
+  const navigate = useNavigate();
+
+  const signUp = () => {
+    navigate(RouteConstants.SignUp);
+  };
+
   return (
     <div className="Login">
       <MainContainer>
-        <WelcomeText>Login</WelcomeText>
+        <WelcomeText>Log in</WelcomeText>
+        <Text onClick={signUp}>Don&apos;t have an account? Sign up</Text>
         <InputContainer>
           <Input type="text" placeholder="Email" />
           <Input type="password" placeholder="Password" />
@@ -19,14 +26,10 @@ function Login() {
         <ButtonContainer>
           <Button content="LOG IN" />
         </ButtonContainer>
-        <LoginWith>OR LOGIN WITH</LoginWith>
+        <LoginWith>OR</LoginWith>
         <HorizontalRule />
-        <IconsContainer>
-          <Icon color={GoogleBackground}>
-            <FaGoogle />
-          </Icon>
-        </IconsContainer>
-        <ForgotPassword>Forgot Password ?</ForgotPassword>
+        <ContinueButton />
+        <Text>Forgot password?</Text>
       </MainContainer>
     </div>
   );
@@ -117,14 +120,7 @@ const HorizontalRule = styled.hr`
   backdrop-filter: blur(25px);
 `;
 
-const IconsContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  margin: 2rem 0 3rem 0;
-  width: 80%;
-`;
-
-const ForgotPassword = styled.h4`
+const Text = styled.h4`
   cursor: pointer;
 `;
 

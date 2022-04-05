@@ -4,6 +4,7 @@ import React from 'react';
 import { useGoogleLogout } from 'react-google-login';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/google.svg';
+import RouteConstants from '../../constants/RouteConstants';
 
 const clientId = process.env.REACT_APP_CLIENT_ID;
 
@@ -12,7 +13,7 @@ function LogoutButton() {
 
   const onLogoutSuccess = () => {
     log.info('Successfully logged out');
-    navigate('/landing');
+    navigate(RouteConstants.Login);
   };
 
   const onFailure = () => {
