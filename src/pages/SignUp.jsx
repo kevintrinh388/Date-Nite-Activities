@@ -1,46 +1,33 @@
-import React from 'react'
-import "./Pages.css"
-import styled from "styled-components";
-import Button from "../components/ Button";
-import Icon from "../components/Icon";
-import Input from "../components/Input";
-import { FaGoogle } from "react-icons/fa";
+import React from 'react';
+import './Pages.css';
+import styled from 'styled-components';
+import { FaGoogle } from 'react-icons/fa';
+import Button from '../components/ Button';
+import Icon from '../components/Icon';
+import Input from '../components/Input';
 
 function SignUp() {
-    const GoogleBackground =
-        "linear-gradient((to right, #4e4d4e 43%, #3876f8 43%)";
-    return (
-        <div className='SignUp'>
-            <MainContainer>
-                <WelcomeText>SignUp</WelcomeText>
-                <InputContainer>
-                    <Input type="text" placeholder="Email" />
-                    <Input type="password" placeholder="Password" />
-                    {/* <Input type="password" placeholder="Confirm Password" /> */}
-                </InputContainer>
-                <ButtonContainer>
-                    <Button content="SIGN UP" />
-                </ButtonContainer>
-                {/* <LoginWith>OR LOGIN WITH</LoginWith> */}
-                <HorizontalRule />
-                <IconsContainer>
-                    {/* <Icon color={FacebookBackground}>
-                        <FaFacebookF />
-                    </Icon>
-                    <Icon color={InstagramBackground}>
-                        <FaInstagram />
-                    </Icon>
-                    <Icon color={TwitterBackground}>
-                        <FaTwitter />
-                    </Icon>  */}
-                    <Icon color={GoogleBackground}>
-                        <FaGoogle />
-                    </Icon>
-                </IconsContainer>
-                {/* <ForgotPassword>Password?</ForgotPassword> */}
-            </MainContainer>
-        </div>
-    );
+  const GoogleBackground = 'linear-gradient((to right, #4e4d4e 43%, #3876f8 43%)';
+  return (
+    <div className="SignUp">
+      <MainContainer>
+        <WelcomeText>SignUp</WelcomeText>
+        <InputContainer>
+          <Input type="text" placeholder="Email" />
+          <Input type="password" placeholder="Password" />
+        </InputContainer>
+        <ButtonContainer>
+          <Button content="SIGN UP" />
+        </ButtonContainer>
+        <HorizontalRule />
+        <IconsContainer>
+          <Icon color={GoogleBackground}>
+            <FaGoogle />
+          </Icon>
+        </IconsContainer>
+      </MainContainer>
+    </div>
+  );
 }
 
 const MainContainer = styled.div`
@@ -113,10 +100,6 @@ const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
-const LoginWith = styled.h5`
-  cursor: pointer;
-`;
-
 const HorizontalRule = styled.hr`
   width: 90%;
   height: 0.3rem;
@@ -135,10 +118,5 @@ const IconsContainer = styled.div`
   width: 80%;
   cursor: pointer;
 `;
-
-// const ForgotPassword = styled.h4`
-//   cursor: pointer;
-// `;
-
 
 export default SignUp;

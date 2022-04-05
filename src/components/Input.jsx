@@ -1,6 +1,9 @@
-import styled from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
 export default function Input({ type, placeholder }) {
-    return <StyledInput type={type} placeholder={placeholder} />;
+  return <StyledInput type={type} placeholder={placeholder} />;
 }
 
 const StyledInput = styled.input`
@@ -27,3 +30,13 @@ const StyledInput = styled.input`
     font-size: 1rem;
   }
 `;
+
+Input.defaultProps = {
+  type: '',
+  placeholder: '',
+};
+
+Input.propTypes = {
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+};

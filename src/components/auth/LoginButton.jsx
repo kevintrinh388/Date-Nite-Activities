@@ -8,7 +8,7 @@ import refreshTokenSetup from '../../utils/refreshToken';
 
 const clientId = process.env.REACT_APP_CLIENT_ID;
 
-function Login() {
+function LoginButton() {
   const navigate = useNavigate();
 
   const onSuccess = (res) => {
@@ -39,4 +39,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginButton;
