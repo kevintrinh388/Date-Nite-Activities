@@ -1,16 +1,16 @@
 .button {
     cursor: pointer;
-    display: block;
-    font-size: 1.3em;
+    display: flex;
     box-sizing: content-box;
-    margin: 20px auto 0px;
-    width: 70%;
-    padding: 15px 20px;
+    padding: 10px 15px;
     border-radius: 24px;
     border-color: transparent;
     background-color: white;
     box-shadow: 0px 16px 60px rgba(78, 79, 114, 0.08);
     position: relative;
+    justify-content: space-evenly;
+    margin: 1rem 0 3rem 0;
+    width: 60%;
 }
   
 .buttonText {

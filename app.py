@@ -35,24 +35,16 @@ def index():
     """
     Route for serving React page
     """
-    return flask.redirect("landing")
+    return flask.redirect("login")
 
 
 app.register_blueprint(bp)
 
 
-@app.route("/landing")
-def landing():
-    """
-    Renders landing page
-    """
-    return flask.render_template("index.html")
-
-
 @app.route("/")
 def index():
     """Route for index page"""
-    return flask.redirect(flask.url_for("landing"))
+    return flask.redirect(flask.url_for("login"))
 
 
 @app.route("/login")

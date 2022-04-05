@@ -1,5 +1,4 @@
 const RouteConstants = {
-  Landing: '/landing',
   Login: '/login',
   SignUp: '/signup',
   Profile: '/profile',
