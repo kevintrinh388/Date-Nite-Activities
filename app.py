@@ -1,7 +1,9 @@
 import os
+from dotenv import find_dotenv, load_dotenv
 import flask
 from yelp import business_search
 from maps import maps_search
+from models import db, User, Activities
 
 app = flask.Flask(__name__)
 
@@ -14,6 +16,18 @@ bp = flask.Blueprint(
     __name__,
     template_folder="./static/react",
 )
+
+load_dotenv(find_dotenv())
+
+# Point SQLAlchemy to your Heroku database
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("MY_DATABASE")
+# Gets rid of a warning
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db.init_app(app)
+
+with app.app_context():
+    db.create_all()
 
 # route for serving React page
 @bp.route("/home")
