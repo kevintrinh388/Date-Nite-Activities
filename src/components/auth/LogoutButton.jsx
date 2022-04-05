@@ -7,7 +7,7 @@ import logo from '../../assets/google.svg';
 
 const clientId = process.env.REACT_APP_CLIENT_ID;
 
-function Logout() {
+function LogoutButton() {
   const navigate = useNavigate();
 
   const onLogoutSuccess = () => {
@@ -33,4 +33,4 @@ function Logout() {
   );
 }
 
-export default Logout;
+export default LogoutButton;

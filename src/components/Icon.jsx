@@ -1,7 +1,9 @@
-import styled from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 export default function Icon({ color, children }) {
-    return <StyledIcon background={color}>{children}</StyledIcon>;
+  return <StyledIcon background={color}>{children}</StyledIcon>;
 }
 
 const StyledIcon = styled.div`
@@ -19,3 +21,12 @@ const StyledIcon = styled.div`
     height: 1.5rem;
   }
 `;
+
+Icon.defaultProps = {
+  color: '',
+};
+
+Icon.propTypes = {
+  color: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};

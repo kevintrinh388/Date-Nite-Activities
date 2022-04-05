@@ -1,7 +1,9 @@
-import styled from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 export default function Button({ content }) {
-    return <StyledButton>{content}</StyledButton>;
+  return <StyledButton>{content}</StyledButton>;
 }
 
 const StyledButton = styled.button`
@@ -15,3 +17,11 @@ const StyledButton = styled.button`
   border-radius: 2rem;
   cursor: pointer;
 `;
+
+Button.defaultProps = {
+  content: '',
+};
+
+Button.propTypes = {
+  content: PropTypes.string,
+};
