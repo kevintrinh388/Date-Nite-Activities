@@ -35,20 +35,20 @@ def index():
 
 @app.route("/login")
 def login():
-    """Route for login page"""
+    """Route for login page on React"""
     return flask.render_template("index.html")
 
 
 @app.route("/signup")
 def signup():
-    """Route for signup page"""
+    """Route for signup page on React"""
     return flask.render_template("index.html")
 
 
 @app.route("/profile")
 def profile():
     """Route for profile page on React"""
-    return flask.render_template("login.html")
+    return flask.render_template("index.html")
 
 
 @app.route("/search_yelp", methods=["GET", "POST"])
