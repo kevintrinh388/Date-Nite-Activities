@@ -30,21 +30,29 @@ with app.app_context():
     db.create_all()
 
 # route for serving React page
-@bp.route("/home")
-def home():
-    """Route for home page on React"""
-    # NB: DO NOT add an "index.html" file in your normal templates folder
-    # Flask will stop serving this React page correctly
-    return flask.render_template("index.html")
+@bp.route("/")
+def index():
+    """
+    Route for serving React page
+    """
+    return flask.redirect("landing")
 
 
 app.register_blueprint(bp)
 
 
+@app.route("/landing")
+def landing():
+    """
+    Renders landing page
+    """
+    return flask.render_template("index.html")
+
+
 @app.route("/")
 def index():
     """Route for index page"""
-    return flask.redirect(flask.url_for("login"))
+    return flask.redirect(flask.url_for("landing"))
 
 
 @app.route("/login")
