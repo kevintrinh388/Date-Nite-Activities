@@ -30,12 +30,12 @@ with app.app_context():
     db.create_all()
 
 # route for serving React page
-@bp.route("/")
+@bp.route("/home")
 def index():
     """
     Route for serving React page
     """
-    return flask.redirect("login")
+    return flask.render_template("index.html")
 
 
 app.register_blueprint(bp)
