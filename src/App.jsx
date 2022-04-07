@@ -17,7 +17,7 @@ function App() {
         <Route path={RouteConstants.SignUp} element={<SignUp />} />
         <Route path={RouteConstants.Profile} element={<Profile />} />
         <Route path={RouteConstants.Home} element={<Home />} />
-        <Route path={RouteConstants.Dashboard} component={<Dashboard />} />
+        <Route path={RouteConstants.Dashboard} element={<Dashboard />} />
       </Routes>
     </div>
   );
