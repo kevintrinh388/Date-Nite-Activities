@@ -47,7 +47,14 @@ function Mynavbar(props) {
               />
             </Form>
             <NavDropdown
-              title="Profile"
+              title={(
+                <img
+                  src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+                  className="rounded-circle z-depth-0"
+                  alt="profile"
+                  height="35"
+                />
+              )}
               id="nav-dropdown-dark-example"
               align="end"
               menuVariant="dark"
