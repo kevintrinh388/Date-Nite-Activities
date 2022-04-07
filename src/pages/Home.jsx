@@ -2,8 +2,8 @@ import '../App.css';
 import log from 'loglevel';
 import React, { useState, useRef, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Mynavbar from '../components/Mynavbar';
 import DisplayCards from '../components/DisplayCards';
+import Mynavbar1 from '../components/Mynavbar1/Mynavbar1';
 
 function Home() {
   const [activities, setActivities] = useState([]);
@@ -65,7 +65,7 @@ function Home() {
 
   return (
     <div className="App">
-      <Mynavbar searchButton={searchButton} userLocation={userLocation} />
+      <Mynavbar1 searchButton={searchButton} userLocation={userLocation} />
       {useEffect(() => {
         searchButton();
       }, [])}
