@@ -50,4 +50,4 @@ jobs:
         run: python -m unittests
 
       - name: Run js tests
-        run: npm run ci:test
+        run: npm run test
