@@ -43,5 +43,8 @@ jobs:
       - name: Lint files
         run: find . -name '*.py' -exec pylint {} \;
         
-      - name: Run tests
+      - name: Run Python tests
         run: python -m unittests
+
+      - name: Run js tests
+        run: npm run ci:test

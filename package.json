@@ -29,9 +29,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "BUILD_PATH='./static/react' react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject",
-    "watch": "npm-watch"
+    "watch": "npm-watch",
+    "ci:test": "react-scripts test --watchAll --ci"
   },
   "eslintConfig": {
     "extends": [
