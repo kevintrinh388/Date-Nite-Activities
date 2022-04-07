@@ -3,7 +3,7 @@ from dotenv import find_dotenv, load_dotenv
 import flask
 from yelp import business_search
 from maps import maps_search
-from models import db, User, Activities
+from models import db, User, Favorites
 
 app = flask.Flask(__name__)
 
