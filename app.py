@@ -4,7 +4,8 @@ from dotenv import find_dotenv, load_dotenv
 import flask
 from yelp import business_search
 from maps import maps_search
-from models import db
+from flask_login import current_user
+from models import db, User, Favorites
 
 app = flask.Flask(__name__)
 
@@ -94,6 +95,64 @@ def search_maps():
     google_maps = maps_search(query)
 
     return flask.jsonify(google_maps)
+
+
+@app.route("/get_favorites")
+def select_favorites():
+    favourite = Favorites.query.filter_by(user_id=current_user.user_id).all()
+    return flask.jsonify(
+        [
+            {
+                "name": favourite.name,
+                "address": favourite.address,
+                "rating": favourite.rating,
+                "range": favourite.range,
+            }
+            for r in data
+        ]
+    )
+
+
+@app.route("/save_favorites", methods=["POST"])
+def save_favorites():
+    data = flask.request.json
+    user_favorites = Favorites.query.filter_by(user_id=current_user.user_id).all()
+    new_favorites = [
+        Favorites(
+            user_id=current_user.user_id,
+            name=r["name"],
+            address=r["address"],
+            rating=r["rating"],
+            range=r["range"],
+        )
+        for r in data
+    ]
+    for name in user_favorites:
+        db.session.delete(name)
+    for name in new_favorites:
+        db.session.add(name)
+    db.session.commit()
+    return flask.jsonify("Added to Favourites")
+
+
+# @app.route("/save", methods=["POST"])
+# def save_favorites():
+#     name = flask.request.form.get("name")
+#     rest_name = Favorites(title=name)
+#     db.session.add(rest_name)
+#     db.session.commit()
+#     # return flask.redirect("")
+#     return flask.jsonify("Added to Favourites")
+
+
+# # @app.route("/delete", methods=["POST"])
+# # def delete():
+# #     show_name = flask.request.form.get("show")
+# #     show = TVShow.query.filter_by(title=show_name).first()
+# #     if show is not None:
+# #         db.session.delete(show)
+# #         db.session.commit()
+# #     return flask.redirect("/")
 
 
 app.run(
