@@ -1,13 +1,15 @@
-
-from dotenv import find_dotenv, load_dotenv
-import requests
+'''Handles Yelp API requests'''
 import os
+import requests
+from dotenv import find_dotenv, load_dotenv
+
 
 load_dotenv(find_dotenv())
 
 YELP_KEY = os.getenv("YELP_KEY")
 
-def business_search(location, term="Restaurant", filter_rating=0, price=None, sort_by="best_match" ):
+def business_search(location, term="Restaurant", filter_rating=0, price=None, sort_by="best_match"):
+    '''Searches for businesses near a chosen location'''
     response = requests.get(
         "https://api.yelp.com/v3/businesses/search",
         params={
@@ -35,7 +37,6 @@ def business_search(location, term="Restaurant", filter_rating=0, price=None, so
                     "url" : i["url"],
                     "location" : i["location"],
                     "price" : i["price"]
-                    
                 }
             )
             else:
@@ -46,10 +47,8 @@ def business_search(location, term="Restaurant", filter_rating=0, price=None, so
                         "image_url" : i["image_url"],
                         "url" : i["url"],
                         "location" : i["location"],
-                        
                     }
                 )
 
     return business_list
-
     
