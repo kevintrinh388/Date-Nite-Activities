@@ -49,5 +49,5 @@ jobs:
       - name: Run Python tests
         run: python -m unittests
 
-      - name: Run js tests
-        run: npm run test
+      # - name: Run js tests
+      #   run: npm run test
