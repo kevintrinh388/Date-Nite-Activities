@@ -31,7 +31,7 @@ with app.app_context():
 
 # route for serving React page
 @bp.route("/home")
-def index():
+def home():
     """
     Route for serving React page
     """
@@ -62,6 +62,12 @@ def signup():
 @app.route("/profile")
 def profile():
     """Route for profile page on React"""
+    return flask.render_template("index.html")
+
+
+@app.route("/dashboard")
+def dashboard():
+    """Route for dashbord page on React"""
     return flask.render_template("index.html")
 
 

@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './Comp.css';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import { Form, FormControl } from 'react-bootstrap';
+import React from "react";
+import PropTypes from "prop-types";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Comp.css";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import { Form, FormControl } from "react-bootstrap";
 
 function Mynavbar(props) {
   const { searchButton, userLocation } = props;
@@ -24,11 +24,10 @@ function Mynavbar(props) {
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
+            style={{ maxHeight: "100px" }}
             navbarScroll
           >
             <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
           </Nav>
 
           <Nav>
@@ -47,19 +46,22 @@ function Mynavbar(props) {
               />
             </Form>
             <NavDropdown
-              title="Profile"
+              title={
+                <img
+                  src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+                  className="rounded-circle z-depth-0"
+                  alt="profile"
+                  height="35"
+                />
+              }
               id="nav-dropdown-dark-example"
               align="end"
               menuVariant="dark"
             >
-              <NavDropdown.Item href="/profile">Dashboard</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                {' '}
-                Edit Profile
-                {' '}
-              </NavDropdown.Item>
+              <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+              <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
 
-              <NavDropdown.Item href="#action5">Logout</NavDropdown.Item>
+              <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

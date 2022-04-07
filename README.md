@@ -13,3 +13,12 @@ Steps to run:
 6. make .env with googlemaps(MAPS_KEY) and yelp(YELP_KEY) api keys
 7. run app.py
 
+
+Useful Commands
+```
+git checkout -b feature 
+git add --all
+git commit -m "feature commit"
+git push origin feature
+```
+
