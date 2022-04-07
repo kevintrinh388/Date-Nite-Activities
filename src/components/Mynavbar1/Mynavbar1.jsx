@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Comp.css';
+import '../Comp.css';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
@@ -31,7 +31,7 @@ function Mynavbar1(props) {
           </Nav>
 
           <Nav>
-            <Navbar.Text className="navtext">Explore new places</Navbar.Text>
+            <Navbar.Text data-test-id="navtext" className="navtext">Explore new places</Navbar.Text>
             <Form className="d-flex" onSubmit={searchHandler}>
               <FormControl
                 type="search"
