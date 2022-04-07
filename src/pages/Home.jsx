@@ -2,8 +2,8 @@ import '../App.css';
 import log from 'loglevel';
 import React, { useState, useRef, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Mynavbar from '../components/Mynavbar';
 import DisplayCards from '../components/DisplayCards';
+import Mynavbar1 from '../components/Mynavbar1/Mynavbar1';
 
 function Home() {
   const [activities, setActivities] = useState([]);
@@ -65,17 +65,20 @@ function Home() {
 
   return (
     <div className="App">
-      <Mynavbar searchButton={searchButton} userLocation={userLocation} />
+      <Mynavbar1 searchButton={searchButton} userLocation={userLocation} />
       {useEffect(() => {
         searchButton();
       }, [])}
 
       <div className="list">
+        <br />
         <div className="filter">
           <select
             name="type"
             id="type"
-            onChange={(e) => { searchTerm.current = e.target.value; }}
+            onChange={(e) => {
+              searchTerm.current = e.target.value;
+            }}
           >
             <option value="Restaurant">Restaurant</option>
             <option value="Activity">Activity</option>
@@ -84,7 +87,9 @@ function Home() {
           <select
             name="rating"
             id="rating"
-            onChange={(e) => { searchRating.current = e.target.value; }}
+            onChange={(e) => {
+              searchRating.current = e.target.value;
+            }}
           >
             <option value="1"> 1 and up </option>
             <option value="2"> 2 and up </option>
@@ -96,7 +101,9 @@ function Home() {
           <select
             name="price"
             id="price"
-            onChange={(e) => { searchPrice.current = e.target.value; }}
+            onChange={(e) => {
+              searchPrice.current = e.target.value;
+            }}
           >
             <option value="1,2,3,4"> $-$$$$ </option>
             <option value="1,2,3"> $-$$$ </option>
@@ -108,6 +115,7 @@ function Home() {
             Filter!
           </button>
         </div>
+        <br />
         <DisplayCards activities={activities} updateMap={updateMap} />
       </div>
 
