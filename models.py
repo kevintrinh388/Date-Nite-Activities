@@ -1,4 +1,3 @@
-from email.headerregistry import Address
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
@@ -19,6 +18,5 @@ class Favorites(db.Model):
     user_id = db.Column(db.Integer, unique=True, nullable=False)
     name = db.Column(db.String(80), nullable=False)
     address = db.Column(db.String(200))
-    ratings = db.Column(db.String(30))
+    rating = db.Column(db.Integer)
     range = db.Column(db.String(20))
-    yelp_url = db.Column(db.String(100))
