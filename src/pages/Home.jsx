@@ -1,24 +1,24 @@
-import "../App.css";
-import log from "loglevel";
-import React, { useState, useRef, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Mynavbar from "../components/Mynavbar";
-import DisplayCards from "../components/DisplayCards";
+import '../App.css';
+import log from 'loglevel';
+import React, { useState, useRef, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Mynavbar from '../components/Mynavbar';
+import DisplayCards from '../components/DisplayCards';
 
 function Home() {
   const [activities, setActivities] = useState([]);
-  const [mapsLink, setMapsLink] = useState("");
-  const userLocation = useRef("Atlanta, GA");
-  const searchTerm = useRef("Restaurants");
+  const [mapsLink, setMapsLink] = useState('');
+  const userLocation = useRef('Atlanta, GA');
+  const searchTerm = useRef('Restaurants');
   const searchRating = useRef(0);
-  const searchPrice = useRef("1,2,3,4");
+  const searchPrice = useRef('1,2,3,4');
 
   const searchYelp = () => {
-    fetch("/search_yelp", {
-      method: "POST",
-      cache: "no-cache",
+    fetch('/search_yelp', {
+      method: 'POST',
+      cache: 'no-cache',
       headers: {
-        content_type: "application/json",
+        content_type: 'application/json',
       },
       body: JSON.stringify({
         location: userLocation.current,
@@ -34,11 +34,11 @@ function Home() {
   };
 
   const searchMaps = () => {
-    fetch("/search_maps", {
-      method: "POST",
-      cache: "no-cache",
+    fetch('/search_maps', {
+      method: 'POST',
+      cache: 'no-cache',
       headers: {
-        content_type: "application/json",
+        content_type: 'application/json',
       },
       body: JSON.stringify(userLocation.current),
     })
