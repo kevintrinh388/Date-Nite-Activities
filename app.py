@@ -65,6 +65,12 @@ def profile():
     return flask.render_template("index.html")
 
 
+@app.route("/dashboard")
+def dashboard():
+    """Route for dashbord page on React"""
+    return flask.render_template("index.html")
+
+
 @app.route("/search_yelp", methods=["GET", "POST"])
 def search_yelp():
     """Route for loading yelp info"""
