@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import { Form, FormControl } from 'react-bootstrap';
 
-function Mynavbar(props) {
+function Mynavbar1(props) {
   const { searchButton, userLocation } = props;
 
   const searchHandler = (e) => {
@@ -70,9 +70,9 @@ function Mynavbar(props) {
   );
 }
 
-Mynavbar.propTypes = {
+Mynavbar1.propTypes = {
   userLocation: PropTypes.string.isRequired,
   searchButton: PropTypes.func.isRequired,
 };
 
-export default Mynavbar;
+export default Mynavbar1;

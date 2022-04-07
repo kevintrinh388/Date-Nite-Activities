@@ -2,7 +2,7 @@ import '../App.css';
 import log from 'loglevel';
 import React, { useState, useRef, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Mynavbar from '../components/Mynavbar';
+import Mynavbar from '../components/Mynavbar1';
 import DisplayCards from '../components/DisplayCards';
 
 function Home() {
