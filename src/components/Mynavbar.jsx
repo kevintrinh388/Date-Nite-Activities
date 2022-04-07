@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./Comp.css";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import { Form, FormControl } from "react-bootstrap";
+import React from 'react';
+import PropTypes from 'prop-types';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Comp.css';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import { Form, FormControl } from 'react-bootstrap';
 
 function Mynavbar(props) {
   const { searchButton, userLocation } = props;
@@ -24,7 +24,7 @@ function Mynavbar(props) {
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
+            style={{ maxHeight: '100px' }}
             navbarScroll
           >
             <Nav.Link href="/home">Home</Nav.Link>
@@ -46,14 +46,14 @@ function Mynavbar(props) {
               />
             </Form>
             <NavDropdown
-              title={
+              title={(
                 <img
                   src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
                   className="rounded-circle z-depth-0"
                   alt="profile"
                   height="35"
                 />
-              }
+              )}
               id="nav-dropdown-dark-example"
               align="end"
               menuVariant="dark"
