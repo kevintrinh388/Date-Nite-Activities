@@ -1,11 +1,13 @@
+'''Unit tests'''
 import unittest
 from unittest.mock import MagicMock, patch
 from yelp import business_search
 
 class FunctionTests(unittest.TestCase):
+    '''Class for all unit tests'''
     maxDiff = None
-    # testing api call: no filter_rating, api response contains objects that all contain price
     def test_business_search_no_rating_price(self):
+        ''' no filter_rating, api response contains objects that all contain price '''
         mock_response = MagicMock()
         mock_response.json.return_value = {
             "businesses": [
@@ -147,8 +149,8 @@ class FunctionTests(unittest.TestCase):
             result = business_search("location","term",0,"1,2,3,4","sort_by")
             self.assertEqual(result, expected_output)
 
-    # testing api call: no filter_rating, api response contains some objects with NO PRICE
     def test_business_search_no_rating_no_price(self):
+        ''' no filter_rating, api response contains some objects with NO PRICE '''
         mock_response = MagicMock()
         mock_response.json.return_value = {
             "businesses": [
@@ -285,9 +287,8 @@ class FunctionTests(unittest.TestCase):
             result = business_search("location","term",0,"1,2,3,4","sort_by")
             self.assertEqual(result, expected_output)
 
-
-    # testing api call: filter_rating = 3, api response contains objects that all contain price
     def test_business_search_filter_rating_price(self):
+        ''' filter_rating = 3, api response contains objects that all contain price '''
         mock_response = MagicMock()
         mock_response.json.return_value = {
             "businesses": [
@@ -397,8 +398,8 @@ class FunctionTests(unittest.TestCase):
             result = business_search("location","term",3,"1,2,3,4","sort_by")
             self.assertEqual(result, expected_output)
 
-    # testing api call: filter_rating = 3, api response contains some objects with NO PRICE
     def test_business_search_filter_rating_no_price(self):
+        ''' filter_rating = 3, api response contains some objects with NO PRICE '''
         mock_response = MagicMock()
         mock_response.json.return_value = {
             "businesses": [
@@ -503,9 +504,6 @@ class FunctionTests(unittest.TestCase):
             mock_get.return_value = mock_response
             result = business_search("location","term",3,"1,2,3,4","sort_by")
             self.assertEqual(result, expected_output)
-
-
-
 
 
 if __name__ == "__main__":
