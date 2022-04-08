@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-alert */
 /* eslint-disable no-shadow */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
@@ -47,7 +48,7 @@ function Fav(props) {
         ),
       }).then((response) => response.json());
     } catch (e) {
-      console.log(e);
+      alert('sorry');
     }
   }
 
