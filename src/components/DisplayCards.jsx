@@ -11,49 +11,48 @@ function DisplayCards(props) {
   return (
     <div>
       {
-      activities.map((activity) => (
-        <div className="activity_list">
-          <Card border="dark" style={{ width: '18rem', left: '70px' }}>
-            <Card.Img variant="top" src={activity.image_url} />
-            <Card.Body>
-              <Card.Title>{activity.name}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                {activity.location.address1}
-                ,
-                {activity.location.city}
-                ,
-                {activity.location.state}
-                ,
-                {activity.location.zip_code}
-              </Card.Subtitle>
-              <Card.Text>{activity.rating}</Card.Text>
-              <Card.Text>{activity.price}</Card.Text>
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={() => updateMap(
-                  `${activity.name.split(' ')[0]
-                  } ${
-                    activity.location.address1}`,
-                )}
-              >
-                Click to view on map
-              </Button>
-              <br />
-              <a href={activity.url} target="_blank" rel="noreferrer">
-                <Icon icon="simple-icons:yelp" width="20" height="30" />
-                {' '}
-              </a>
-              {/* <a href={activity.url} target="_blank" rel="noreferrer">
+        activities.map((activity) => (
+          <div className="activity_list">
+            <Card border="dark" style={{ width: '18rem', left: '70px' }}>
+              <Card.Img variant="top" src={activity.image_url} />
+              <Card.Body>
+                <Card.Title>{activity.name}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                  {activity.location.address1}
+                  ,
+                  {activity.location.city}
+                  ,
+                  {activity.location.state}
+                  ,
+                  {activity.location.zip_code}
+                </Card.Subtitle>
+                <Card.Text>{activity.rating}</Card.Text>
+                <Card.Text>{activity.price}</Card.Text>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={() => updateMap(
+                    `${activity.name.split(' ')[0]
+                    } ${activity.location.address1}`,
+                  )}
+                >
+                  Click to view on map
+                </Button>
+                <br />
+                <a href={activity.url} target="_blank" rel="noreferrer">
+                  <Icon icon="simple-icons:yelp" width="20" height="30" />
+
+                </a>
+                {/* <a href={activity.url} target="_blank" rel="noreferrer">
                 <Icon icon="akar-icons:heart" width="30" height="30" />
                 {' '}
               </a> */}
-              <Fav />
-            </Card.Body>
-          </Card>
-          <br />
-        </div>
-      ))
+                <Fav place={activity.name} username="yalini" rating={activity.rating} price={activity.price} />
+              </Card.Body>
+            </Card>
+            <br />
+          </div>
+        ))
       }
     </div>
   );
