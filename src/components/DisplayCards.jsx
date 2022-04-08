@@ -48,7 +48,7 @@ function DisplayCards(props) {
                 <Icon icon="akar-icons:heart" width="30" height="30" />
                 {' '}
               </a> */}
-              <Fav />
+              <Fav place={activity.name} username="yalini" rating={activity.rating} price={activity.price} />
             </Card.Body>
           </Card>
           <br />
