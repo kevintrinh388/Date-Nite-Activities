@@ -28,4 +28,5 @@ jobs:
       - run: npx eslint src/
       - run: CI=true npm test
       - run: echo works and pipeline continues
-    env: CI true
+    env: 
+      CI: true
