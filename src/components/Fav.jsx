@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-shadow */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -9,7 +10,8 @@ import PropTypes from 'prop-types';
 
 function Fav(props) {
   const {
-    place, username, rating, price,
+    place, username, rating, price, activityId, address, city, state, zipCode, yelpUrl,
+    imageUrl,
   } = props;
 
   // eslint-disable-next-line no-unused-vars
@@ -21,10 +23,37 @@ function Fav(props) {
     place,
     rating,
     price,
+    activityId,
+    address,
+    city,
+    state,
+    zipCode,
+    yelpUrl,
+    imageUrl,
   };
+
+  function save(activities) {
+    console.log(activities);
+    try {
+      fetch('/add_to_favorites', {
+        method: 'post',
+        mode: 'no-cors',
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(
+          activities,
+        ),
+      }).then((response) => response.json());
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   function handleClick() {
     setActivities(info);
+    save(info);
     setDisabled(true);
   }
 
