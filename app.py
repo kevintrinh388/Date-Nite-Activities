@@ -1,12 +1,12 @@
+# pylint:disable=no-member
 """Control all server side logic and routes"""
 import os
 from dotenv import find_dotenv, load_dotenv
 import flask
-from requests import session
+
 from yelp import business_search
 from maps import maps_search
-from flask_login import current_user
-from models import db, User, Favorites
+from models import db, Favorites
 
 app = flask.Flask(__name__)
 
@@ -56,6 +56,12 @@ def login():
     return flask.render_template("index.html")
 
 
+@app.route("/logout")
+def logout():
+    """Route for login page on React"""
+    return flask.redirect(flask.url_for("login"))
+
+
 @app.route("/signup")
 def signup():
     """Route for signup page on React"""
@@ -100,31 +106,29 @@ def search_maps():
 
 @app.route("/add_to_favorites", methods=["POST"])
 def save_favorites():
-    data = flask.request.json
-
-
-#     user_favorites = Favorites.query.all()
-#     new_favorite = Favorites(username=data.["username,place=["place"],address=["address"],
-#             rating=["rating"],
-#             range=["range"],
-#             yelp_url=["yelp_url"],
-#         )
-#     db.session.add(new_favorite)
-#     db.session.commit()
-#     return flask.jsonify("Added to Favourites")
-
-
-# @app.route("/del_activites", methods=["POST"])
-# def del_activites():
-#     """Deleting List of User Reviews"""
-#     del_list = request.get_json(["Actvivites"])
-#     print(dellist["Activites"])  # list of rev id to delete
-
-#     deleted = delete(Favorites).where(Review.id.in(del_list["delReviews"]))
-
-#     db.session.execute(deleted)
-#     db.session.commit()
-#     return jsonify(del_list)
+    """Route for Saving Favorites"""
+    data = flask.request.get_json(force=True)
+    user_favorites = (Favorites.query.filter_by(username=data["username"])
+    .filter_by(yelp_id=data["activityId"]).first())
+    if not user_favorites:
+        new_favorite = Favorites(
+            username=data["username"],
+            place=data["place"],
+            address1=data["address"],
+            rating=data["rating"],
+            range=data["price"],
+            city=data["city"],
+            zipcode=data["zipCode"],
+            state=data["state"],
+            yelp_id=data["activityId"],
+            yelp_url=data["yelpUrl"],
+            image_url=data["imageUrl"],
+        )
+        db.session.add(new_favorite)
+        db.session.commit()
+    else:
+        print("You have already added this to your list")
+    return flask.jsonify("Added to the database")
 
 
 app.run(
