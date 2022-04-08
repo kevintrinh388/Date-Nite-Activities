@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DisplayCards from '../components/DisplayCards';
 import Mynavbar1 from '../components/Mynavbar1/Mynavbar1';
+import MapDisplay from '../components/map/MapDisplay';
 
 function Home() {
   const [activities, setActivities] = useState([]);
@@ -120,7 +121,7 @@ function Home() {
       </div>
 
       <div className="map">
-        <iframe title="google-map" className="map" src={mapsLink} />
+        <MapDisplay value={mapsLink} />
       </div>
     </div>
   );
