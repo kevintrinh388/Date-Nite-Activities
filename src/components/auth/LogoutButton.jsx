@@ -1,15 +1,25 @@
 import './Auth.css';
 import log from 'loglevel';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGoogleLogout } from 'react-google-login';
 import { useNavigate } from 'react-router-dom';
-import logo from '../../assets/google.svg';
 import RouteConstants from '../../constants/RouteConstants';
-
-const clientId = process.env.REACT_APP_CLIENT_ID;
+import { CLIENT_ID, PROFILE_KEY } from '../../constants/AuthConstants';
+import logo from '../../assets/google.svg';
 
 function LogoutButton() {
+  const [isAuthTypeGoogle, setAuthType] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    try {
+      const currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
+      log.info('Detected google user: ', currentUserProfile);
+      setAuthType(true);
+    } catch (e) {
+      log.info('No google profile information found');
+    }
+  }, []);
 
   const onLogoutSuccess = () => {
     log.info('Successfully logged out');
@@ -21,14 +31,14 @@ function LogoutButton() {
   };
 
   const { signOut } = useGoogleLogout({
-    clientId,
+    clientId: CLIENT_ID,
     onLogoutSuccess,
     onFailure,
   });
 
   return (
     <button type="submit" onClick={signOut} className="button">
-      <img src={logo} alt="google login" className="icon" />
+      {isAuthTypeGoogle ? <img src={logo} alt="google login" className="icon" /> : null }
       <span className="buttonText">Sign out</span>
     </button>
   );
