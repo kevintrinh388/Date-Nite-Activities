@@ -2,6 +2,7 @@
 import os
 from dotenv import find_dotenv, load_dotenv
 import flask
+from requests import session
 from yelp import business_search
 from maps import maps_search
 from flask_login import current_user
@@ -100,44 +101,31 @@ def search_maps():
 @app.route("/add_to_favorites", methods=["POST"])
 def save_favorites():
     data = flask.request.json
-    user_favorites = Favorites.query.filter_by(username=current_user.username).all()
-    newfavorites = [
-        Favorites(
-            username=current_user.usename,
-            place=r["place"],
-            address=r["address"],
-            rating=r["rating"],
-            range=r["range"],
-            yelp_url=r["yelp_url"],
-        )
-        for r in data
-    ]
-    for username in user_favorites:
-        db.session.delete(username)
-    for username in newfavorites:
-        db.session.add(username)
-    db.session.commit()
-    return flask.jsonify("Added to Favourites")
+    print(data)
 
 
-# @app.route("/save", methods=["POST"])
-# def save_favorites():
-#     name = flask.request.form.get("name")
-#     rest_name = Favorites(title=name)
-#     db.session.add(rest_name)
+#     user_favorites = Favorites.query.all()
+#     new_favorite = Favorites(username=data.["username,place=["place"],address=["address"],
+#             rating=["rating"],
+#             range=["range"],
+#             yelp_url=["yelp_url"],
+#         )
+#     db.session.add(new_favorite)
 #     db.session.commit()
-#     # return flask.redirect("")
 #     return flask.jsonify("Added to Favourites")
 
 
-# # @app.route("/delete", methods=["POST"])
-# # def delete():
-# #     show_name = flask.request.form.get("show")
-# #     show = TVShow.query.filter_by(title=show_name).first()
-# #     if show is not None:
-# #         db.session.delete(show)
-# #         db.session.commit()
-# #     return flask.redirect("/")
+# @app.route("/del_activites", methods=["POST"])
+# def del_activites():
+#     """Deleting List of User Reviews"""
+#     del_list = request.get_json(["Actvivites"])
+#     print(dellist["Activites"])  # list of rev id to delete
+
+#     deleted = delete(Favorites).where(Review.id.in(del_list["delReviews"]))
+
+#     db.session.execute(deleted)
+#     db.session.commit()
+#     return jsonify(del_list)
 
 
 app.run(
