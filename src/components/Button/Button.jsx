@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export default function Button({ content }) {
+function Button({ content }) {
   return <StyledButton data-testid="buttontest">{content}</StyledButton>;
 }
 
@@ -25,3 +25,5 @@ Button.defaultProps = {
 Button.propTypes = {
   content: PropTypes.string,
 };
+
+export default Button;
