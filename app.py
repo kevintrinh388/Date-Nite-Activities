@@ -108,7 +108,6 @@ def search_maps():
 def save_favorites():
     """Route for Saving Favorites"""
     data = flask.request.get_json(force=True)
-    print(data)
     user_favorites = (Favorites.query.filter_by(username=data["username"])
     .filter_by(yelp_id=data["activityId"]).first())
     if not user_favorites:
@@ -128,7 +127,7 @@ def save_favorites():
         db.session.add(new_favorite)
         db.session.commit()
     else:
-        print("sorry")
+        print("You have already added this to your list")
     return flask.jsonify("Added to the database")
 
 
