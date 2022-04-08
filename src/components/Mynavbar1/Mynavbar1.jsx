@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Comp.css';
+import log from 'loglevel';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import { Form, FormControl } from 'react-bootstrap';
+import {
+  IMAGE_KEY, PROFILE_KEY,
+} from '../../constants/AuthConstants';
 
 function Mynavbar1(props) {
   const { searchButton, userLocation } = props;
+
+  const [profilePicture, setProfilePicture] = useState('');
+
+  useEffect(() => {
+    try {
+      const currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
+      setProfilePicture(currentUserProfile[IMAGE_KEY]);
+    } catch (e) {
+      log.info('No profile picture found');
+    }
+  }, []);
 
   const searchHandler = (e) => {
     e.preventDefault();
@@ -48,7 +63,7 @@ function Mynavbar1(props) {
             <NavDropdown
               title={(
                 <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+                  src={profilePicture}
                   className="rounded-circle z-depth-0"
                   alt="profile"
                   height="35"

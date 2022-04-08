@@ -8,16 +8,21 @@ import logo from '../../assets/google.svg';
 import refreshTokenSetup from '../../utils/refreshToken';
 import RouteConstants from '../../constants/RouteConstants';
 import 'react-toastify/dist/ReactToastify.css';
-
-const clientId = process.env.REACT_APP_CLIENT_ID;
+import { CLIENT_ID, PROFILE_KEY } from '../../constants/AuthConstants';
 
 function GoogleContinueButton() {
   const navigate = useNavigate();
 
   const onSuccess = (res) => {
-    log.info('Login Success: currentUser:', res.profileObj);
-    refreshTokenSetup(res);
-    navigate(RouteConstants.Home);
+    try {
+      const currentUser = res.profileObj;
+      log.info('Login Success: currentUser:', currentUser);
+      localStorage.setItem(PROFILE_KEY, JSON.stringify(currentUser));
+      refreshTokenSetup(res);
+      navigate(RouteConstants.Home);
+    } catch (e) {
+      log.error('There was a problem trying to save user information');
+    }
   };
 
   const onFailure = (res) => {
@@ -36,7 +41,7 @@ function GoogleContinueButton() {
   const { signIn } = useGoogleLogin({
     onSuccess,
     onFailure,
-    clientId,
+    clientId: CLIENT_ID,
     isSignedIn: true,
     accessType: 'offline',
     prompt: 'consent',
