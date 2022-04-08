@@ -3,7 +3,7 @@ import './Pages.css';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import ContinueButton from '../components/auth/ContinueButton';
-import Button from '../components/ Button';
+import Button from '../components/Button/ Button';
 import Input from '../components/Input';
 import RouteConstants from '../constants/RouteConstants';
 
