@@ -56,6 +56,12 @@ def login():
     return flask.render_template("index.html")
 
 
+@app.route("/logout")
+def logout():
+    """Route for login page on React"""
+    return flask.redirect(flask.url_for("login"))
+
+
 @app.route("/signup")
 def signup():
     """Route for signup page on React"""
