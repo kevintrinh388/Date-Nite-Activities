@@ -11,6 +11,7 @@ import { Form, FormControl } from 'react-bootstrap';
 import {
   IMAGE_KEY, PROFILE_KEY,
 } from '../../constants/AuthConstants';
+import RouteConstants from '../../constants/RouteConstants';
 
 function Mynavbar1(props) {
   const { searchButton, userLocation } = props;
@@ -73,10 +74,8 @@ function Mynavbar1(props) {
               align="end"
               menuVariant="dark"
             >
-              <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-              <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
-
-              <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
+              <NavDropdown.Item href={RouteConstants.Profile}>Profile</NavDropdown.Item>
+              <NavDropdown.Item href={RouteConstants.Dashboard}>Dashboard</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
