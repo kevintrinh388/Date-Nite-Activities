@@ -11,7 +11,8 @@ class FunctionTests(unittest.TestCase):
         mock_response = MagicMock()
         mock_response.json.return_value = {
             "businesses": [
-            {
+            {   
+                "id" : '1',
                 "rating": 1,
                 "price": "$",
                 "name": "Example1",
@@ -28,6 +29,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '2',
                 "rating": 2,
                 "price": "$$",
                 "name": "Example2",
@@ -44,6 +46,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '3',
                 "rating": 3,
                 "price": "$$$",
                 "name": "Example3",
@@ -60,6 +63,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '4',
                 "rating": 4,
                 "price": "$$$$",
                 "name": "Example4",
@@ -79,6 +83,7 @@ class FunctionTests(unittest.TestCase):
         }
         expected_output = [
             {
+                "id" : '1',
                 "name": "Example1",
                 "rating": 1,
                 "image_url": "http://example.com/1.jpg",
@@ -95,6 +100,7 @@ class FunctionTests(unittest.TestCase):
                 "price": "$",
             },
             {
+                "id" : '2',
                 "name": "Example2",
                 "rating": 2,
                 "image_url": "http://example.com/2.jpg",
@@ -111,6 +117,7 @@ class FunctionTests(unittest.TestCase):
                 "price": "$$",
             },
             {
+                "id" : '3',
                 "name": "Example3",
                 "rating": 3,
                 "image_url": "http://example.com/3.jpg",
@@ -127,6 +134,7 @@ class FunctionTests(unittest.TestCase):
                 "price": "$$$",
             },
             {
+                "id" : '4',
                 "name": "Example4",
                 "rating": 4,
                 "image_url": "http://example.com/4.jpg",
@@ -155,6 +163,7 @@ class FunctionTests(unittest.TestCase):
         mock_response.json.return_value = {
             "businesses": [
             {
+                "id" : '1',
                 "rating": 1,
                 "name": "Example1NOPRICE",
                 "url": "https://example.com/1",
@@ -170,6 +179,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '2',
                 "rating": 2,
                 "price": "$$",
                 "name": "Example2",
@@ -186,6 +196,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '3',
                 "rating": 3,
                 "name": "Example3NOPRICE",
                 "url": "https://example.com/3",
@@ -201,6 +212,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '4',
                 "rating": 4,
                 "price": "$$$$",
                 "name": "Example4",
@@ -220,6 +232,7 @@ class FunctionTests(unittest.TestCase):
         }
         expected_output = [
             {
+                "id" : '1',
                 "name": "Example1NOPRICE",
                 "rating": 1,
                 "image_url": "http://example.com/1.jpg",
@@ -235,6 +248,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '2',
                 "name": "Example2",
                 "rating": 2,
                 "image_url": "http://example.com/2.jpg",
@@ -251,6 +265,7 @@ class FunctionTests(unittest.TestCase):
                 "price": "$$",
             },
             {
+                "id" : '3',
                 "name": "Example3NOPRICE",
                 "rating": 3,
                 "image_url": "http://example.com/3.jpg",
@@ -266,6 +281,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '4',
                 "name": "Example4",
                 "rating": 4,
                 "image_url": "http://example.com/4.jpg",
@@ -293,6 +309,7 @@ class FunctionTests(unittest.TestCase):
         mock_response.json.return_value = {
             "businesses": [
             {
+                "id" : '1',
                 "rating": 1,
                 "price": "$",
                 "name": "Example1",
@@ -309,6 +326,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '2',
                 "rating": 2,
                 "price": "$$",
                 "name": "Example2",
@@ -325,6 +343,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '3',
                 "rating": 3,
                 "price": "$$$",
                 "name": "Example3",
@@ -341,6 +360,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '4',
                 "rating": 4,
                 "price": "$$$$",
                 "name": "Example4",
@@ -360,6 +380,7 @@ class FunctionTests(unittest.TestCase):
         }
         expected_output = [
             {
+                "id" : '3',
                 "name": "Example3",
                 "rating": 3,
                 "image_url": "http://example.com/3.jpg",
@@ -376,6 +397,7 @@ class FunctionTests(unittest.TestCase):
                 "price": "$$$",
             },
             {
+                "id" : '4',
                 "name": "Example4",
                 "rating": 4,
                 "image_url": "http://example.com/4.jpg",
@@ -404,6 +426,7 @@ class FunctionTests(unittest.TestCase):
         mock_response.json.return_value = {
             "businesses": [
             {
+                "id" : '1',
                 "rating": 1,
                 "name": "Example1NOPRICE",
                 "url": "https://example.com/1",
@@ -419,6 +442,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '2',
                 "rating": 2,
                 "price": "$$",
                 "name": "Example2",
@@ -435,6 +459,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '3',
                 "rating": 3,
                 "name": "Example3NOPRICE",
                 "url": "https://example.com/3",
@@ -450,6 +475,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '4',
                 "rating": 4,
                 "price": "$$$$",
                 "name": "Example4",
@@ -469,6 +495,7 @@ class FunctionTests(unittest.TestCase):
         }
         expected_output = [
             {
+                "id" : '3',
                 "name": "Example3NOPRICE",
                 "rating": 3,
                 "image_url": "http://example.com/3.jpg",
@@ -484,6 +511,7 @@ class FunctionTests(unittest.TestCase):
                 },
             },
             {
+                "id" : '4',
                 "name": "Example4",
                 "rating": 4,
                 "image_url": "http://example.com/4.jpg",
