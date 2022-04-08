@@ -31,6 +31,7 @@ def business_search(location, term="Restaurant", filter_rating=0, price=None, so
             if 'price' in i:
                 business_list.append(
                 {
+                    "id" : i["id"],
                     "name" : i["name"],
                     "rating" : i["rating"],
                     "image_url" : i["image_url"],
@@ -42,6 +43,7 @@ def business_search(location, term="Restaurant", filter_rating=0, price=None, so
             else:
                 business_list.append(
                     {
+                        "id" : i["id"],
                         "name" : i["name"],
                         "rating" : i["rating"],
                         "image_url" : i["image_url"],
