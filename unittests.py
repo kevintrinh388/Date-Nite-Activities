@@ -2,12 +2,22 @@
 import unittest
 from unittest.mock import MagicMock, patch
 from yelp import business_search
+from maps import MAPS_KEY, maps_search
+
 
 
 class FunctionTests(unittest.TestCase):
     """Class for all unit tests"""
 
     maxDiff = None
+
+    def test_maps_search(self):
+        result = maps_search('Atlanta')
+        self.assertEqual(result, f"https://www.google.com/maps/embed/v1/search?key={MAPS_KEY}&q=Atlanta")
+
+    def test_maps_search_return_type(self):
+        result = maps_search('Atlanta')
+        self.assertEqual(type(result), type(f"https://www.google.com/maps/embed/v1/search?key={MAPS_KEY}&q=Atlanta"))
 
     def test_business_search_no_rating_price(self):
         """no filter_rating, api response contains objects that all contain price"""
