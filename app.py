@@ -101,7 +101,6 @@ def search_maps():
 @app.route("/add_to_favorites", methods=["POST"])
 def save_favorites():
     data = flask.request.json
-    print(data)
 
 
 #     user_favorites = Favorites.query.all()

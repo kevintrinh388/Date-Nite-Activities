@@ -22,44 +22,27 @@ function Fav(props) {
     rating,
     price,
   };
-  function handleSave(info) {
-    try {
-      fetch('/add_to_favorites', {
-        method: 'post',
-        mode: 'no-cors',
-        headers: {
-          Accept: 'application/json',
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(info),
-      }).then((response) => response.json());
-    } catch (e) {
-      console.log(e);
-    }
+
+  function handleClick() {
+    setActivities(info);
+    setDisabled(true);
   }
 
+  console.log(activities);
+  return (
+    <button
+      disabled={disabled}
+      onClick={() => { handleClick(); }}
+    >
+      <Icon icon="akar-icons:heart" width="30" height="30" />
+    </button>
+  );
+}
 
-}
-function handleClick() {
-  console.log(activites);
-  setActivities(info);
-  handleSave(info);
-  setDisabled(true);
-}
-return (
-  <button
-    disabled={disabled}
-    onClick={() => { handleClick(); }}
-  >
-    <Icon icon="akar-icons:heart" width="30" height="30" />
-  </button>
-);
-}
 Fav.propTypes = {
   place: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
 
 };
-
 
 export default Fav;
