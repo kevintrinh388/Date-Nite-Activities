@@ -1,16 +1,48 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import React from 'react';
+import { React, useState } from 'react';
 import { Icon } from '@iconify/react';
+import PropTypes from 'prop-types';
 
-function Fav() {
+function Fav(props) {
+  const {
+    place, username, rating, price,
+  } = props;
+
+  // eslint-disable-next-line no-unused-vars
+  const [disabled, setDisabled] = useState(false);
+  const [activities, setActivities] = useState([]);
+
+  const info = {
+    username,
+    place,
+    rating,
+    price,
+  };
+
+  function handleClick() {
+    setActivities(info);
+    setDisabled(true);
+  }
+
+  console.log(activities);
   return (
-    // eslint-disable-next-line no-console
-    <a href="#" onClick={() => { console.log('hi'); }}>
+    <button
+      disabled={disabled}
+      onClick={() => { handleClick(); }}
+    >
       <Icon icon="akar-icons:heart" width="30" height="30" />
-    </a>
+    </button>
   );
 }
+
+Fav.propTypes = {
+  place: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+
+};
 
 export default Fav;
