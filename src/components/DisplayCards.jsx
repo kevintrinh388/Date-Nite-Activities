@@ -57,6 +57,8 @@ function DisplayCards(props) {
                   city={activity.location.city}
                   state={activity.location.state}
                   zipCode={activity.location.zip_code}
+                  yelpUrl={activity.url}
+                  imageUrl={activity.image_url}
                 />
               </Card.Body>
             </Card>

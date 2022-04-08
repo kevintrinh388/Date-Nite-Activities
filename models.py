@@ -20,7 +20,7 @@ class Favorites(db.Model):
     """Favorites model"""
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String, unique=True, nullable=False)
+    username = db.Column(db.String(50), nullable=False)
     place = db.Column(db.String(80), nullable=False)
     rating = db.Column(db.Integer)
     range = db.Column(db.String(20))
@@ -29,7 +29,8 @@ class Favorites(db.Model):
     zipcode = db.Column(db.String(100))
     state = db.Column(db.String(100))
     yelp_id = db.Column(db.String, unique=True)
-    yelp_url = db.Column(db.String(120))
+    yelp_url = db.Column(db.String(300))
+    image_url = db.Column(db.String(300))
 
     def __repr__(self):
         return f"<Favorites {self.username, self.place}>"

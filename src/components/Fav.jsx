@@ -10,7 +10,8 @@ import PropTypes from 'prop-types';
 
 function Fav(props) {
   const {
-    place, username, rating, price, activityId, address, city, state, zipCode,
+    place, username, rating, price, activityId, address, city, state, zipCode, yelpUrl,
+    imageUrl,
   } = props;
 
   // eslint-disable-next-line no-unused-vars
@@ -27,6 +28,8 @@ function Fav(props) {
     city,
     state,
     zipCode,
+    yelpUrl,
+    imageUrl,
   };
 
   function save(activities) {
