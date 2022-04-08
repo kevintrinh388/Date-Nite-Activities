@@ -8,6 +8,7 @@ from maps import maps_search
 from flask_login import current_user
 from models import db, User, Favorites
 
+
 app = flask.Flask(__name__)
 
 # set up a separate route to serve the index.html file generated
@@ -100,18 +101,19 @@ def search_maps():
 
 @app.route("/add_to_favorites", methods=["POST"])
 def save_favorites():
-    data = flask.request.json
-
-
-#     user_favorites = Favorites.query.all()
-#     new_favorite = Favorites(username=data.["username,place=["place"],address=["address"],
-#             rating=["rating"],
-#             range=["range"],
-#             yelp_url=["yelp_url"],
-#         )
-#     db.session.add(new_favorite)
-#     db.session.commit()
-#     return flask.jsonify("Added to Favourites")
+    data = flask.request.get_json(force=True)
+    print(data)
+    # user_favorites = Favorites.query.all()
+    # new_favorite = Favorites(
+    #     place=data.place,
+    #     address=data.address,
+    #     rating=data.rating,
+    #     range=data.range,
+    #     yelp_url=data.yelp_url,
+    # )
+    # db.session.add(data)
+    # db.session.commit()
+    return flask.jsonify("Added to the database")
 
 
 # @app.route("/del_activites", methods=["POST"])

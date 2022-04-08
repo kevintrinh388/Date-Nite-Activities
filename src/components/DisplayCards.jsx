@@ -47,7 +47,17 @@ function DisplayCards(props) {
                 <Icon icon="akar-icons:heart" width="30" height="30" />
                 {' '}
               </a> */}
-                <Fav place={activity.name} username="yalini" rating={activity.rating} price={activity.price} />
+                <Fav
+                  place={activity.name}
+                  username="yalini"
+                  rating={activity.rating}
+                  price={activity.price}
+                  activityId={activity.id}
+                  address={activity.location.address1}
+                  city={activity.location.city}
+                  state={activity.location.state}
+                  zipCode={activity.location.zip_code}
+                />
               </Card.Body>
             </Card>
             <br />
