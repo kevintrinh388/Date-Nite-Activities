@@ -11,6 +11,14 @@ Steps to run:
 6. make .env with googlemaps(MAPS_KEY) and yelp(YELP_KEY) api keys
 7. run app.py
 
+Developer commands:
+1. Make code changes
+2. Run `npm run build`
+3. Run `npm ci`
+4. Run `npm run watch`
+5. Open new terminal tab, run `python3 app.py`
+6. If there are no errors from the above commands, submit a pull request following the below commands
+
 
 Useful Commands
 ```

@@ -39,10 +39,4 @@ function Fav(props) {
   );
 }
 
-Fav.propTypes = {
-  place: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
-
-};
-
 export default Fav;
