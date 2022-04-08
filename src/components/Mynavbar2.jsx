@@ -9,6 +9,7 @@ import Nav from 'react-bootstrap/Nav';
 import {
   IMAGE_KEY, PROFILE_KEY,
 } from '../constants/AuthConstants';
+import RouteConstants from '../constants/RouteConstants';
 
 function Mynavbar2() {
   const [profilePicture, setProfilePicture] = useState('');
@@ -50,10 +51,8 @@ function Mynavbar2() {
               align="end"
               menuVariant="dark"
             >
-              <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-              <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
-
-              <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
+              <NavDropdown.Item href={RouteConstants.Profile}>Profile</NavDropdown.Item>
+              <NavDropdown.Item href={RouteConstants.Dashboard}>Dashboard</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
