@@ -19,7 +19,24 @@
         "react"
     ],
     "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        "linebreak-style": [
+            "error",
+            "windows"
+        ]
     },
-    "ignorePatterns": ["index.js", "reportWebVitals.js", "setupTests.js", "App.test.js"]
+    "ignorePatterns": [
+        "index.js",
+        "reportWebVitals.js",
+        "setupTests.js",
+        "App.test.js"
+    ]
 }
