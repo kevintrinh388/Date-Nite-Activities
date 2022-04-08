@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { Icon } from '@iconify/react';
+import Fav from './Fav';
 
 function DisplayCards(props) {
   const { activities, updateMap } = props;
@@ -43,10 +44,11 @@ function DisplayCards(props) {
                 <Icon icon="simple-icons:yelp" width="20" height="30" />
                 {' '}
               </a>
-              <a href={activity.url} target="_blank" rel="noreferrer">
+              {/* <a href={activity.url} target="_blank" rel="noreferrer">
                 <Icon icon="akar-icons:heart" width="30" height="30" />
                 {' '}
-              </a>
+              </a> */}
+              <Fav />
             </Card.Body>
           </Card>
           <br />
