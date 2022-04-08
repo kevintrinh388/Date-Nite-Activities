@@ -109,22 +109,26 @@ def save_favorites():
     """Route for Saving Favorites"""
     data = flask.request.get_json(force=True)
     print(data)
-    # user_favorites = Favorites.query.all()
-    new_favorite = Favorites(
-        username=data["username"],
-        place=data["place"],
-        address1=data["address"],
-        rating=data["rating"],
-        range=data["price"],
-        city=data["city"],
-        zipcode=data["zipCode"],
-        state=data["state"],
-        yelp_id=data["activityId"],
-        yelp_url=data["yelpUrl"],
-        image_url=data["imageUrl"],
-    )
-    db.session.add(new_favorite)
-    db.session.commit()
+    user_favorites = (Favorites.query.filter_by(username=data["username"])
+    .filter_by(yelp_id=data["activityId"]).first())
+    if not user_favorites:
+        new_favorite = Favorites(
+            username=data["username"],
+            place=data["place"],
+            address1=data["address"],
+            rating=data["rating"],
+            range=data["price"],
+            city=data["city"],
+            zipcode=data["zipCode"],
+            state=data["state"],
+            yelp_id=data["activityId"],
+            yelp_url=data["yelpUrl"],
+            image_url=data["imageUrl"],
+        )
+        db.session.add(new_favorite)
+        db.session.commit()
+    else:
+        print("sorry")
     return flask.jsonify("Added to the database")
 
 
