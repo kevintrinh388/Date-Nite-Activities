@@ -2,12 +2,14 @@
 import os
 from dotenv import find_dotenv, load_dotenv
 import flask
+from flask_sqlalchemy import SQLAlchemy
 from yelp import business_search
 from maps import maps_search
-from flask_login import current_user
-from models import db, User, Favorites
 
-app = flask.Flask(__name__)
+# from flask_login import current_user
+from models import User
+from database import db, app
+
 
 # set up a separate route to serve the index.html file generated
 # by create-react-app/npm run build.
@@ -25,11 +27,9 @@ load_dotenv(find_dotenv())
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("MY_DATABASE")
 # Gets rid of a warning
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SESSION_TYPE"] = "filesystem"
 
-db.init_app(app)
-
-with app.app_context():
-    db.create_all()
+db = SQLAlchemy(app)
 
 # route for serving React page
 @bp.route("/home")
@@ -97,42 +97,42 @@ def search_maps():
     return flask.jsonify(google_maps)
 
 
-@app.route("/get_favorites")
-def select_favorites():
-    favourite = Favorites.query.filter_by(user_id=current_user.user_id).all()
-    return flask.jsonify(
-        [
-            {
-                "name": favourite.name,
-                "address": favourite.address,
-                "rating": favourite.rating,
-                "range": favourite.range,
-            }
-            for r in data
-        ]
-    )
+# @app.route("/get_favorites")
+# def select_favorites():
+#     favourite = Favorites.query.filter_by(user_id=current_user.user_id).all()
+#     return flask.jsonify(
+#         [
+#             {
+#                 "name": favourite.name,
+#                 "address": favourite.address,
+#                 "rating": favourite.rating,
+#                 "range": favourite.range,
+#             }
+#             for r in data
+#         ]
+#     )
 
 
-@app.route("/save_favorites", methods=["POST"])
-def save_favorites():
-    data = flask.request.json
-    user_favorites = Favorites.query.filter_by(user_id=current_user.user_id).all()
-    new_favorites = [
-        Favorites(
-            user_id=current_user.user_id,
-            name=r["name"],
-            address=r["address"],
-            rating=r["rating"],
-            range=r["range"],
-        )
-        for r in data
-    ]
-    for name in user_favorites:
-        db.session.delete(name)
-    for name in new_favorites:
-        db.session.add(name)
-    db.session.commit()
-    return flask.jsonify("Added to Favourites")
+# @app.route("/save_favorites", methods=["POST"])
+# def save_favorites():
+#     data = flask.request.json
+#     user_favorites = Favorites.query.filter_by(user_id=current_user.user_id).all()
+#     new_favorites = [
+#         Favorites(
+#             user_id=current_user.user_id,
+#             name=r["name"],
+#             address=r["address"],
+#             rating=r["rating"],
+#             range=r["range"],
+#         )
+#         for r in data
+#     ]
+#     for name in user_favorites:
+#         db.session.delete(name)
+#     for name in new_favorites:
+#         db.session.add(name)
+#     db.session.commit()
+#     return flask.jsonify("Added to Favourites")
 
 
 # @app.route("/save", methods=["POST"])
@@ -154,9 +154,9 @@ def save_favorites():
 # #         db.session.commit()
 # #     return flask.redirect("/")
 
-
-app.run(
-    debug=True,
-    host="0.0.0.0",
-    port=int(os.getenv("PORT", "8080")),
-)
+if __name__ == "__main__":
+    app.run(
+        debug=True,
+        host="0.0.0.0",
+        port=int(os.getenv("PORT", "8080")),
+    )
