@@ -97,40 +97,25 @@ def search_maps():
     return flask.jsonify(google_maps)
 
 
-@app.route("/get_favorites")
-def select_favorites():
-    favourite = Favorites.query.filter_by(user_id=current_user.user_id).all()
-    return flask.jsonify(
-        [
-            {
-                "name": favourite.name,
-                "address": favourite.address,
-                "rating": favourite.rating,
-                "range": favourite.range,
-            }
-            for r in data
-        ]
-    )
-
-
-@app.route("/save_favorites", methods=["POST"])
+@app.route("/add_to_favorites", methods=["POST"])
 def save_favorites():
     data = flask.request.json
-    user_favorites = Favorites.query.filter_by(user_id=current_user.user_id).all()
-    new_favorites = [
+    user_favorites = Favorites.query.filter_by(username=current_user.username).all()
+    newfavorites = [
         Favorites(
-            user_id=current_user.user_id,
-            name=r["name"],
+            username=current_user.usename,
+            place=r["place"],
             address=r["address"],
             rating=r["rating"],
             range=r["range"],
+            yelp_url=r["yelp_url"],
         )
         for r in data
     ]
-    for name in user_favorites:
-        db.session.delete(name)
-    for name in new_favorites:
-        db.session.add(name)
+    for username in user_favorites:
+        db.session.delete(username)
+    for username in newfavorites:
+        db.session.add(username)
     db.session.commit()
     return flask.jsonify("Added to Favourites")
 
