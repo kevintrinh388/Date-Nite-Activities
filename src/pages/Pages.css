@@ -28,3 +28,14 @@
   width: 100vw;
   font-family: "Raleway", sans-serif;
 }
+.Display{
+  width: 320px;
+  height: 415px;
+}
+
+.Image{
+  height: auto;
+  max-height: 250px;
+  width: auto;
+  max-width: 250px;
+}
