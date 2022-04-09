@@ -8,6 +8,9 @@
 import { React, useState } from 'react';
 import { Icon } from '@iconify/react';
 import PropTypes from 'prop-types';
+import {
+  PROFILE_KEY,
+} from '../constants/AuthConstants';
 
 function Fav(props) {
   const {
@@ -18,6 +21,7 @@ function Fav(props) {
   // eslint-disable-next-line no-unused-vars
   const [disabled, setDisabled] = useState(false);
   const [activities, setActivities] = useState([]);
+  const currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
 
   const info = {
     username,
@@ -45,6 +49,7 @@ function Fav(props) {
         },
         body: JSON.stringify(
           activities,
+          currentUserProfile,
         ),
       }).then((response) => response.json());
     } catch (e) {
