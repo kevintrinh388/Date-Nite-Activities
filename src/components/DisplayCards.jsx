@@ -5,9 +5,15 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { Icon } from '@iconify/react';
 import Fav from './Fav';
+import {
+  NAME_KEY, PROFILE_KEY,
+} from '../constants/AuthConstants';
 
 function DisplayCards(props) {
   const { activities, updateMap } = props;
+  const currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
+  const username = currentUserProfile[NAME_KEY];
+
   return (
     <div>
       {
@@ -49,7 +55,7 @@ function DisplayCards(props) {
               </a> */}
                 <Fav
                   place={activity.name}
-                  username="yalini"
+                  username={username}
                   rating={activity.rating}
                   price={activity.price}
                   activityId={activity.id}

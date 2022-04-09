@@ -122,10 +122,11 @@ def save_google_user():
 def save_favorites():
     """Route for Saving Favorites"""
     data = flask.request.get_json(force=True)
+    print(data)
+    username = data["username"]
+    yelp_id = data["activityId"]
     user_favorites = (
-        Favorites.query.filter_by(username=data["username"])
-        .filter_by(yelp_id=data["activityId"])
-        .first()
+        Favorites.query.filter_by(username=username).filter_by(yelp_id=yelp_id).first()
     )
     if not user_favorites:
         new_favorite = Favorites(
@@ -151,7 +152,9 @@ def save_favorites():
 @app.route("/load_favs", methods=["GET", "POST"])
 def load_favs():
     """Route for Saving Favorites"""
-    favsList = Favorites.query.filter_by(username="yalini").all()
+    data = flask.request.get_json(force=True)
+    username = data["name"]
+    favsList = Favorites.query.filter_by(username=username).all()
     return flask.jsonify(
         [
             {
