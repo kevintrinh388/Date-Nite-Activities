@@ -37,7 +37,6 @@ function Dashboard() {
         <Row xs={1} md={2} className="g-4">
           {favs.map((activity) => (
             <div className="Display">
-              {/* <h1>{activity.place}</h1> */}
               <Container>
                 <CardGroup>
                   <Card border="dark" style={{ width: '18rem', left: '70px' }}>
