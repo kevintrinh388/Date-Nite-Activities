@@ -3,7 +3,6 @@
 import os
 from dotenv import find_dotenv, load_dotenv
 import flask
-
 from yelp import business_search
 from maps import maps_search
 from models import db, Favorites
@@ -120,6 +119,30 @@ def save_favorites():
     db.session.add(new_favorite)
     db.session.commit()
     return flask.jsonify("Added to the database")
+
+
+@app.route("/load_favs", methods=["GET", "POST"])
+def load_favs():
+    """Route for Saving Favorites"""
+    favsList = Favorites.query.filter_by(username="yalini").all()
+    return flask.jsonify(
+        [
+            {
+                "username": fav.username,
+                "place": fav.place,
+                "rating": fav.rating,
+                "range": fav.range,
+                "address": fav.address1,
+                "city": fav.city,
+                "zipcode": fav.zipcode,
+                "state": fav.state,
+                "yelp_id": fav.yelp_id,
+                "yelp_url": fav.yelp_url,
+                "image_url": fav.image_url,
+            }
+            for fav in favsList
+        ]
+    )
 
 
 app.run(
