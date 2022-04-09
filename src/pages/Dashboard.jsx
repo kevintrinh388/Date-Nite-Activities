@@ -49,13 +49,10 @@ function Dashboard() {
                 </Card.Subtitle>
                 <Card.Text>{activity.rating}</Card.Text>
                 <Card.Text>{activity.range}</Card.Text>
-
                 <br />
                 <a href={activity.yelp_url} target="_blank" rel="noreferrer">
                   <Icon icon="simple-icons:yelp" width="20" height="30" />
-
                 </a>
-
               </Card>
             </div>
           ))}
