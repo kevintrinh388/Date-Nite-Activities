@@ -5,7 +5,7 @@ from dotenv import find_dotenv, load_dotenv
 import flask
 from yelp import business_search
 from maps import maps_search
-from models import db, Favorites
+from models import db, Favorites, User
 
 app = flask.Flask(__name__)
 
@@ -97,12 +97,36 @@ def search_maps():
     return flask.jsonify(google_maps)
 
 
+@app.route("/save_google_user", methods=["POST"])
+def save_google_user():
+    """Route for persisting google user"""
+    data = flask.request.get_json(force=True)
+    username = data["name"]
+    email = data["email"]
+    pic_url = data["imageUrl"]
+    user = User.query.filter_by(username=username).first()
+    if not user:
+        user = User(
+            username=username,
+            email=email,
+            pic_url=pic_url,
+        )
+        db.session.add(user)
+        db.session.commit()
+    else:
+        print("This user already exists")
+    return flask.jsonify("Added user to the database")
+
+
 @app.route("/add_to_favorites", methods=["POST"])
 def save_favorites():
     """Route for Saving Favorites"""
     data = flask.request.get_json(force=True)
-    user_favorites = (Favorites.query.filter_by(username=data["username"])
-    .filter_by(yelp_id=data["activityId"]).first())
+    user_favorites = (
+        Favorites.query.filter_by(username=data["username"])
+        .filter_by(yelp_id=data["activityId"])
+        .first()
+    )
     if not user_favorites:
         new_favorite = Favorites(
             username=data["username"],
