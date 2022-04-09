@@ -13,9 +13,29 @@ import { CLIENT_ID, PROFILE_KEY } from '../../constants/AuthConstants';
 function GoogleContinueButton() {
   const navigate = useNavigate();
 
+  function saveGoogleUser(currentUser) {
+    console.log(currentUser);
+    try {
+      fetch('/save_google_user', {
+        method: 'post',
+        mode: 'no-cors',
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(
+          currentUser,
+        ),
+      }).then((response) => response.json());
+    } catch (e) {
+      log.info('Failed to save google user');
+    }
+  }
+
   const onSuccess = (res) => {
     try {
       const currentUser = res.profileObj;
+      saveGoogleUser(currentUser);
       log.info('Login Success: currentUser:', currentUser);
       localStorage.setItem(PROFILE_KEY, JSON.stringify(currentUser));
       refreshTokenSetup(res);
