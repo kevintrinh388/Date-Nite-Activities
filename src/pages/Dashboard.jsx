@@ -6,7 +6,6 @@ import Mynavbar2 from '../components/Mynavbar2';
 import './Pages.css';
 import { PROFILE_KEY } from '../constants/AuthConstants';
 
-
 function Dashboard() {
   const [favs, setFavs] = useState([]);
   const currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
@@ -55,7 +54,6 @@ function Dashboard() {
                     <Card.Text>{activity.range}</Card.Text>
                     <a href={activity.yelp_url} target="_blank" rel="noreferrer">
                       <Icon icon="simple-icons:yelp" width="20" height="30" />
-
                     </a>
                   </Card>
                 </CardGroup>
