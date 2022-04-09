@@ -28,7 +28,7 @@ class Favorites(db.Model):
     city = db.Column(db.String(100))
     zipcode = db.Column(db.String(100))
     state = db.Column(db.String(100))
-    yelp_id = db.Column(db.String, unique=True)
+    yelp_id = db.Column(db.String(100))
     yelp_url = db.Column(db.String(300))
     image_url = db.Column(db.String(300))
 
