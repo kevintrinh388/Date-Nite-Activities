@@ -37,6 +37,7 @@ React packages: react-router, react-bootstrap, react-icons, styled-components, l
   YELP_URL=""
   MY_DATABSE=""
   REACT_APP_CLIENT_ID=""
+  SECRET_KEY=""
 ```
 4. Run the command below in the main directory to pull in all the node packages you need.
 
