@@ -1,3 +1,5 @@
+# pylint: disable=missing-function-docstring
+
 """Unit tests"""
 import unittest
 from unittest.mock import MagicMock, patch

@@ -1,4 +1,5 @@
 # pylint:disable=no-member
+# pylint: disable=invalid-name
 """Control all server side logic and routes"""
 import os
 from dotenv import find_dotenv, load_dotenv
