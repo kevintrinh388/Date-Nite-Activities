@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Comp.css';
+import log from 'loglevel';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import {
+  IMAGE_KEY, PROFILE_KEY,
+} from '../constants/AuthConstants';
+import RouteConstants from '../constants/RouteConstants';
 
 function Mynavbar2() {
+  const [profilePicture, setProfilePicture] = useState('');
+
+  useEffect(() => {
+    try {
+      const currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
+      setProfilePicture(currentUserProfile[IMAGE_KEY]);
+    } catch (e) {
+      log.info('No profile picture found');
+    }
+  }, []);
+
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
       <Container fluid>
@@ -25,7 +41,7 @@ function Mynavbar2() {
             <NavDropdown
               title={(
                 <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+                  src={profilePicture}
                   className="rounded-circle z-depth-0"
                   alt="profile"
                   height="35"
@@ -35,10 +51,8 @@ function Mynavbar2() {
               align="end"
               menuVariant="dark"
             >
-              <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-              <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
-
-              <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
+              <NavDropdown.Item href={RouteConstants.Profile}>Profile</NavDropdown.Item>
+              <NavDropdown.Item href={RouteConstants.Dashboard}>Dashboard</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

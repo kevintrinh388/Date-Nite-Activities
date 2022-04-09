@@ -1,15 +1,66 @@
+# DateNite
+
+<b>Because Finding a Date is Hard Enough, Let Us Help You Plan One...</b>
+
 Link to heroku - https://banana-crisp-94556.herokuapp.com/
+
+DateNite is a date planning web application
+that shows information about restraunts and activities for a certain location including links to their yelp page and an interactive map. This dat ais dynamically fetched using the GoogleMaps API and Yelp API.
+
 
 React packages: react-router, react-bootstrap, react-icons, styled-components, loglevel, react-toastify 
 
-Steps to run:
-1. make new directory
-2. do the git clone thingy
-3. run npm ci
-4. run npm run watch (keep it running)
-5. make sure there is no index.html in the templates folder
-6. make .env with googlemaps(MAPS_KEY) and yelp(YELP_KEY) api keys
-7. run app.py
+
+## Installation
+
+1. Clone project from git hub
+
+```bash
+  git clone https://github.com/kevintrinh388/Date-Nite-Activities.git
+```
+2. Install the following packages:
+
+```bash
+  pip install requests
+  pip install python-dotenv
+  pip install flask
+  pip install flask-login
+  pip install Flask-SQLAlchemy==2.1
+  pip install psycopg2-binary
+  sudo apt install postgresql
+  sudo apt install npm
+```
+3. Create a .env file to store the following as environment variables:
+
+```bash
+  MAPS_KEY=""
+  YELP_URL=""
+  MY_DATABSE=""
+  REACT_APP_CLIENT_ID=""
+```
+4. Run the command below in the main directory to pull in all the node packages you need.
+
+```bash
+  npm ci
+```
+5. To run the code, first run. Remember to run this command after any change in a React file.
+
+```bash
+  npm run build
+```
+
+6. Then run app.py.
+
+```bash
+  python3 app.py
+```
+## Authors
+- [Nadia Faiz](https://github.com/nadiafaiz)
+- [Nivin Kurien](https://github.com/starrugger)
+- [Shubhada Mandala](https://github.com/smandala1)
+- [Yalini Nadar](https://github.com/YaliniNadar)
+- [Kevin Trinh](https://github.com/kevintrinh388)
+------------
 
 Developer commands:
 1. Make code changes
@@ -27,4 +78,3 @@ git add --all
 git commit -m "feature commit"
 git push origin feature
 ```
-
