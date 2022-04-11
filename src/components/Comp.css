@@ -3,12 +3,11 @@
   right: 20px;
 }
 
-/* .link_buttons {
-  display: flex;
-} */
+.link_buttons {
+  right: 30px;
+}
 
 .yelpy {
   position: absolute;
-  right: 200px;
-  top: auto;
+  margin-top: 31px;
 }
