@@ -48,7 +48,7 @@ function DisplayCards(props) {
                 <br />
                 <div className="link_buttons">
                   <a href={activity.url} target="_blank" rel="noreferrer">
-                    <Icon className="yelpy" icon="simple-icons:yelp" width="20" height="30" />
+                    <Icon className="yelpy" icon="simple-icons:yelp" width="30" height="40" />
                   </a>
                   {/* <a href={activity.url} target="_blank" rel="noreferrer">
                 <Icon icon="akar-icons:heart" width="30" height="30" />

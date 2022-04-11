@@ -2,12 +2,13 @@
   position: relative;
   right: 20px;
 }
-/* 
-.link_buttons {
-  display: inline-block;
-}
+
+/* .link_buttons {
+  display: flex;
+} */
 
 .yelpy {
-  position: relative;
-  bottom: 20px;
-} */
+  position: absolute;
+  right: 200px;
+  top: auto;
+}
