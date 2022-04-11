@@ -1,4 +1,13 @@
-.navtext{
-    position: relative;
-    right: 20px; 
+.navtext {
+  position: relative;
+  right: 20px;
+}
+
+.link_buttons {
+  right: 30px;
+}
+
+.yelpy {
+  position: absolute;
+  margin-top: 31px;
 }

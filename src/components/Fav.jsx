@@ -6,8 +6,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import { React, useState } from 'react';
-import { Icon } from '@iconify/react';
 import PropTypes from 'prop-types';
+import Heart from 'react-animated-heart';
 import {
   PROFILE_KEY,
 } from '../constants/AuthConstants';
@@ -19,9 +19,9 @@ function Fav(props) {
   } = props;
 
   // eslint-disable-next-line no-unused-vars
-  const [disabled, setDisabled] = useState(false);
   const [activities, setActivities] = useState([]);
   const currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
+  const [isClick, setClick] = useState(false);
 
   const info = {
     username,
@@ -60,17 +60,12 @@ function Fav(props) {
   function handleClick() {
     setActivities(info);
     save(info);
-    setDisabled(true);
+    setClick(!isClick);
   }
 
   console.log(activities);
   return (
-    <button
-      disabled={disabled}
-      onClick={() => { handleClick(); }}
-    >
-      <Icon icon="akar-icons:heart" width="30" height="30" />
-    </button>
+    <Heart width="30" height="30" isClick={isClick} onClick={() => handleClick()} />
   );
 }
 
