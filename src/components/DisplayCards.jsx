@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Comp.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { Icon } from '@iconify/react';
@@ -45,27 +46,28 @@ function DisplayCards(props) {
                   Click to view on map
                 </Button>
                 <br />
-                <a href={activity.url} target="_blank" rel="noreferrer">
-                  <Icon icon="simple-icons:yelp" width="20" height="30" />
-
-                </a>
-                {/* <a href={activity.url} target="_blank" rel="noreferrer">
+                <div className="link_buttons">
+                  <a href={activity.url} target="_blank" rel="noreferrer">
+                    <Icon className="yelpy" icon="simple-icons:yelp" width="20" height="30" />
+                  </a>
+                  {/* <a href={activity.url} target="_blank" rel="noreferrer">
                 <Icon icon="akar-icons:heart" width="30" height="30" />
                 {' '}
               </a> */}
-                <Fav
-                  place={activity.name}
-                  username={username}
-                  rating={activity.rating}
-                  price={activity.price}
-                  activityId={activity.id}
-                  address={activity.location.address1}
-                  city={activity.location.city}
-                  state={activity.location.state}
-                  zipCode={activity.location.zip_code}
-                  yelpUrl={activity.url}
-                  imageUrl={activity.image_url}
-                />
+                  <Fav
+                    place={activity.name}
+                    username={username}
+                    rating={activity.rating}
+                    price={activity.price}
+                    activityId={activity.id}
+                    address={activity.location.address1}
+                    city={activity.location.city}
+                    state={activity.location.state}
+                    zipCode={activity.location.zip_code}
+                    yelpUrl={activity.url}
+                    imageUrl={activity.image_url}
+                  />
+                </div>
               </Card.Body>
             </Card>
             <br />
