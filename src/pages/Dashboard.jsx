@@ -34,7 +34,7 @@ function Dashboard() {
       <Mynavbar2 />
       <div>
         <Row xs={1} md={2} className="g-4">
-          {favs.map((activity) => (
+          {favs.slice(0, -1).map((activity) => (
             <div className="Display">
               <Container>
                 <CardGroup>
