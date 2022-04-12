@@ -67,6 +67,11 @@ def profile():
     """Route for profile page on React"""
     return flask.render_template("index.html")
 
+@app.route("/contact_us")
+def contact_us():
+    """Route for contact us page on React"""
+    return flask.render_template("index.html")
+
 
 @app.route("/dashboard")
 def dashboard():
@@ -152,7 +157,7 @@ def save_favorites():
 
 @app.route("/load_favs", methods=["GET", "POST"])
 def load_favs():
-    """Route for Saving Favorites"""
+    """Route for loading Favorites"""
     data = flask.request.get_json(force=True)
     username = data["name"]
     favsList = Favorites.query.filter_by(username=username).all()
