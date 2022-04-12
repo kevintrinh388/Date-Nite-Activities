@@ -3,6 +3,7 @@
 <b>Because Finding a Date is Hard Enough, Let Us Help You Plan One...</b>
 
 Link to heroku - https://banana-crisp-94556.herokuapp.com/
+
 Link to heroku - https://date-nite-activities.herokuapp.com/
 
 DateNite is a date planning web application
