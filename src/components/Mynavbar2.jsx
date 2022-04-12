@@ -35,6 +35,7 @@ function Mynavbar2() {
             navbarScroll
           >
             <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link href="/contact_us">Contact Us</Nav.Link>
           </Nav>
 
           <Nav>
