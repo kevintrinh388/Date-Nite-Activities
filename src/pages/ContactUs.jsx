@@ -1,8 +1,13 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { toast } from 'react-toastify';
 import Mynavbar2 from '../components/Mynavbar2';
+import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+toast.configure();
 export default function ContactUs() {
   const form = useRef();
 
@@ -19,7 +24,7 @@ export default function ContactUs() {
       .then(
         (result) => {
           console.log(result.text);
-          console.log('Sucessfully Sent email');
+          toast.success('Message Sent Successfully');
         },
         (error) => {
           console.log(error.text);
@@ -40,6 +45,7 @@ export default function ContactUs() {
         <textarea name="message" />
         <input type="submit" value="Send" />
       </form>
+
     </>
   );
 }
