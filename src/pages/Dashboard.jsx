@@ -1,10 +1,13 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
 import { Card, Row, CardGroup } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
+import { ToastContainer } from 'react-toastify';
 import { Icon } from '@iconify/react';
 import Mynavbar2 from '../components/Mynavbar2';
 import './Pages.css';
 import { PROFILE_KEY } from '../constants/AuthConstants';
+import GoogleCalendar from '../components/GoogleCalendar';
 
 function Dashboard() {
   const [favs, setFavs] = useState([]);
@@ -55,6 +58,7 @@ function Dashboard() {
                     <a href={activity.yelp_url} target="_blank" rel="noreferrer">
                       <Icon icon="simple-icons:yelp" width="20" height="30" />
                     </a>
+                    <GoogleCalendar />
                   </Card>
                 </CardGroup>
               </Container>
@@ -62,6 +66,7 @@ function Dashboard() {
           ))}
         </Row>
       </div>
+      <ToastContainer />
     </div>
   );
 }
