@@ -151,8 +151,8 @@ def save_favorites():
         db.session.add(new_favorite)
         db.session.commit()
     else:
-        print("You have already added this to your list")
-    return flask.jsonify("Added to the database")
+        return flask.jsonify({"message": True})
+    return flask.jsonify({"message": False})
 
 
 @app.route("/load_favs", methods=["GET", "POST"])

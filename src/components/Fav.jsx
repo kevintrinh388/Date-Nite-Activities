@@ -8,6 +8,8 @@
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import Heart from 'react-animated-heart';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   PROFILE_KEY,
 } from '../constants/AuthConstants';
@@ -51,7 +53,13 @@ function Fav(props) {
           activities,
           currentUserProfile,
         ),
-      }).then((response) => response.json());
+      }).then((response) => response.json()).then((data) => {
+        if (data.message === true) {
+          toast('Activity Already Saved');
+        } else {
+          toast.success('Activity Saved Successfully');
+        }
+      });
     } catch (e) {
       alert('sorry');
     }
