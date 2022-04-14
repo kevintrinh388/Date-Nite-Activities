@@ -15,7 +15,7 @@ function SignUp() {
   };
 
   return (
-    <div className="SignUpp">
+    <div className="SignUp">
       <MainContainer>
         <WelcomeText>Sign Up</WelcomeText>
         <Text onClick={login}>Already have an account? Log in</Text>
