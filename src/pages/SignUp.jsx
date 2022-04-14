@@ -15,18 +15,20 @@ function SignUp() {
   };
 
   return (
-    <div className="SignUp">
+    <div className="SignUpp">
       <MainContainer>
         <WelcomeText>Sign Up</WelcomeText>
         <Text onClick={login}>Already have an account? Log in</Text>
-        <InputContainer>
-          <Input type="text" placeholder="Email" />
-          <Input type="password" placeholder="Password" />
-        </InputContainer>
-        <ButtonContainer>
-          <Button content="SIGN UP" />
-        </ButtonContainer>
-        <SignUpWith>OR</SignUpWith>
+        <form action='' method='post' class='login_form' id='login_form'>
+          <InputContainer>
+            <Input type="text" placeholder="Email" />
+            <Input type="password" placeholder="Password" />
+          </InputContainer>
+          <ButtonContainer>
+            <Button content="SIGN UP" />
+          </ButtonContainer>
+          <SignUpWith>OR</SignUpWith>
+        </form>
         <HorizontalRule />
         <ContinueButton />
       </MainContainer>

@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export default function Button({ content }) {
-  return <StyledButton data-testid="buttontest">{content}</StyledButton>;
+  return (
+    <div>
+      <StyledButton data-testid="buttontest" form="login_form">{content}</StyledButton>
+    </div>
+  );
 }
 
 const StyledButton = styled.button`

@@ -67,6 +67,7 @@ def profile():
     """Route for profile page on React"""
     return flask.render_template("index.html")
 
+
 @app.route("/contact_us")
 def contact_us():
     """Route for contact us page on React"""
@@ -183,6 +184,6 @@ def load_favs():
 
 app.run(
     debug=True,
-    host="0.0.0.0",
+    host="localhost",
     port=int(os.getenv("PORT", "8080")),
 )
