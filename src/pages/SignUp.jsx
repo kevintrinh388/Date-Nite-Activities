@@ -15,11 +15,11 @@ function SignUp() {
   };
 
   return (
-    <div className="SignUpp">
+    <div className="SignUp">
       <MainContainer>
         <WelcomeText>Sign Up</WelcomeText>
         <Text onClick={login}>Already have an account? Log in</Text>
-        <form action='' method='post' class='login_form' id='login_form'>
+        <form action="" method="post" className="login_form" id="login_form">
           <InputContainer>
             <Input type="text" placeholder="Email" />
             <Input type="password" placeholder="Password" />
