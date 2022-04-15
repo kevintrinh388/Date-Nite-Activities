@@ -40,7 +40,7 @@ function GoogleCalendar(props) {
   }
 
   function buttonHandler() {
-    if (dateTime === undefined) {
+    if (dateTime == null) {
       toast.error('No date entered', {
         toastId: 'error1',
         position: 'bottom-center',
