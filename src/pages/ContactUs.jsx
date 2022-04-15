@@ -1,18 +1,21 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { toast } from 'react-toastify';
-import Mynavbar2 from '../components/Mynavbar2';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 toast.configure();
-export default function ContactUs() {
+export default function ContactUs(props) {
   const form = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
+    props.handleClose();
 
     emailjs
       .sendForm(
@@ -33,19 +36,48 @@ export default function ContactUs() {
   };
 
   return (
-    <>
-      <Mynavbar2 />
-      <h1>{process.env.REACT_APP_YOUR_SERVICE_ID}</h1>
-      <form ref={form} onSubmit={sendEmail}>
-        <label>Name</label>
-        <input type="text" name="user_name" />
-        <label>Email</label>
-        <input type="email" name="user_email" />
-        <label>Message</label>
-        <textarea name="message" />
-        <input type="submit" value="Send" />
-      </form>
-
-    </>
+    <Modal show={props.show} onHide={props.handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Contact Us</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <p>Need help? Find a bug? Have a suggestion? Please leave a message here.</p>
+        <Form ref={form} onSubmit={sendEmail}>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Your Name</Form.Label>
+            <Form.Control
+              type="test"
+              name="user_name"
+              placeholder="Name"
+              autoFocus
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Your Email address</Form.Label>
+            <Form.Control
+              type="email"
+              name="user_email"
+              placeholder="name@example.com"
+              autoFocus
+            />
+          </Form.Group>
+          <Form.Group
+            className="mb-3"
+            controlId="exampleForm.ControlTextarea1"
+          >
+            <Form.Label>Your Message</Form.Label>
+            <Form.Control as="textarea" name="message" rows={3} placeholder="Describe how we can help, what bug you've found, a feature you want us to include, or anything you want us to know" />
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={props.handleClose}>
+          Close
+        </Button>
+        <Button variant="primary" onClick={sendEmail}>
+          Sumbit
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 }
