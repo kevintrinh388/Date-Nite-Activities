@@ -84,6 +84,10 @@ const MainContainer = styled.div`
     width: 30vw;
     height: 80vh;
   }
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 `;
 
 const WelcomeText = styled.h2`

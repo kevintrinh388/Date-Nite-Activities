@@ -9,6 +9,7 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import ContactUs from './pages/ContactUs';
+import Landing from './pages/Landing';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path={RouteConstants.Home} element={<Home />} />
         <Route path={RouteConstants.Dashboard} element={<Dashboard />} />
         <Route path={RouteConstants.ContactUS} element={<ContactUs />} />
+        <Route path={RouteConstants.Landing} element={<Landing />} />
       </Routes>
     </div>
   );
