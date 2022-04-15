@@ -5,19 +5,6 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        <button
-          class="sc-bczRLJ cyytMc"
-          data-testid="buttontest"
-          form="login_form"
-        >
-          SIGN UP
-        </button>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div>
       <button
         class="sc-bczRLJ cyytMc"
         data-testid="buttontest"
@@ -26,6 +13,15 @@ Object {
         SIGN UP
       </button>
     </div>
+  </body>,
+  "container": <div>
+    <button
+      class="sc-bczRLJ cyytMc"
+      data-testid="buttontest"
+      form="login_form"
+    >
+      SIGN UP
+    </button>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
