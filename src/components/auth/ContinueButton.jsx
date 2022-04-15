@@ -39,7 +39,7 @@ function GoogleContinueButton() {
       log.info('Login Success: currentUser:', currentUser);
       localStorage.setItem(PROFILE_KEY, JSON.stringify(currentUser));
       refreshTokenSetup(res);
-      navigate(RouteConstants.Home);
+      navigate(RouteConstants.Landing);
     } catch (e) {
       log.error('There was a problem trying to save user information');
     }

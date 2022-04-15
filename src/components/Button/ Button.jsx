@@ -4,9 +4,7 @@ import styled from 'styled-components';
 
 export default function Button({ content }) {
   return (
-    <div>
-      <StyledButton data-testid="buttontest" form="login_form">{content}</StyledButton>
-    </div>
+    <StyledButton data-testid="buttontest">{content}</StyledButton>
   );
 }
 

@@ -19,16 +19,14 @@ function SignUp() {
       <MainContainer>
         <WelcomeText>Sign Up</WelcomeText>
         <Text onClick={login}>Already have an account? Log in</Text>
-        <form action="" method="post" className="login_form" id="login_form">
-          <InputContainer>
-            <Input type="text" placeholder="Email" />
-            <Input type="password" placeholder="Password" />
-          </InputContainer>
-          <ButtonContainer>
-            <Button content="SIGN UP" />
-          </ButtonContainer>
-          <SignUpWith>OR</SignUpWith>
-        </form>
+        <InputContainer>
+          <Input type="text" placeholder="Email" />
+          <Input type="password" placeholder="Password" />
+        </InputContainer>
+        <ButtonContainer>
+          <Button content="SIGN UP" />
+        </ButtonContainer>
+        <SignUpWith>OR</SignUpWith>
         <HorizontalRule />
         <ContinueButton />
       </MainContainer>
@@ -39,6 +37,7 @@ function SignUp() {
 const MainContainer = styled.div`
   display: flex;
   align-items: center;
+  overflow: scroll;
   flex-direction: column;
   height: 80vh;
   width: 30vw;
@@ -82,6 +81,10 @@ const MainContainer = styled.div`
   @media only screen and (min-width: 1280px) {
     width: 30vw;
     height: 80vh;
+  }
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
   }
 `;
 

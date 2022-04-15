@@ -5,6 +5,7 @@ const RouteConstants = {
   Home: '/home',
   Dashboard: '/dashboard',
   ContactUS: '/contact_us',
+  Landing: '/landing',
 };
 
 export default RouteConstants;
