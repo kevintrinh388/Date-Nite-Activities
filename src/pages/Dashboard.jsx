@@ -58,7 +58,7 @@ function Dashboard() {
                     <a href={activity.yelp_url} target="_blank" rel="noreferrer">
                       <Icon icon="simple-icons:yelp" width="20" height="30" />
                     </a>
-                    <GoogleCalendar />
+                    <GoogleCalendar place={activity.place} />
                   </Card>
                 </CardGroup>
               </Container>

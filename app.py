@@ -6,6 +6,7 @@ from dotenv import find_dotenv, load_dotenv
 import flask
 from yelp import business_search
 from maps import maps_search
+from google_calendar import add_event
 from models import db, Favorites, User
 
 app = flask.Flask(__name__)
@@ -180,6 +181,21 @@ def load_favs():
             for fav in favsList
         ]
     )
+
+@app.route("/add_to_calendar",methods=['GET','POST'])
+def add_to_calendar():
+    '''Route for adding event to google calendar'''
+    data = flask.request.get_json(force=True)
+    print(data)
+    start = data['start']
+    end = data['end']
+    token = data['token']
+    place = data['place']
+
+    response = add_event(start,end,token,place)
+
+    return response
+
 
 
 app.run(
