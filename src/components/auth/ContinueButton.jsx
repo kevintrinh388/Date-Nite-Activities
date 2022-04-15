@@ -34,6 +34,13 @@ function GoogleContinueButton() {
 
   const onSuccess = (res) => {
     try {
+      const options = {
+        scope: 'https://www.googleapis.com/auth/calendar',
+      };
+      res.grant(options);
+      res.grantOfflineAccess(options);
+      console.log(res.getGrantedScopes());
+      localStorage.setItem('accessToken', res.accessToken);
       const currentUser = res.profileObj;
       saveGoogleUser(currentUser);
       log.info('Login Success: currentUser:', currentUser);
