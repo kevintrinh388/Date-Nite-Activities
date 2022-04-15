@@ -68,12 +68,6 @@ def profile():
     return flask.render_template("index.html")
 
 
-@app.route("/contact_us")
-def contact_us():
-    """Route for contact us page on React"""
-    return flask.render_template("index.html")
-
-
 @app.route("/dashboard")
 def dashboard():
     """Route for dashbord page on React"""
