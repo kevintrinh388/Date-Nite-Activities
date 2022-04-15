@@ -5,5 +5,5 @@ import '@testing-library/jest-dom';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  render(<Mynavbar1 searchButton={jest.fn()} userLocation='' />, div);
+  render(<Mynavbar1 searchButton={jest.fn()} userLocation="" />, div);
 });
