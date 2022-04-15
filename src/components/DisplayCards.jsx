@@ -50,10 +50,6 @@ function DisplayCards(props) {
                   <a href={activity.url} target="_blank" rel="noreferrer">
                     <Icon className="yelpy" icon="simple-icons:yelp" width="30" height="40" />
                   </a>
-                  {/* <a href={activity.url} target="_blank" rel="noreferrer">
-                <Icon icon="akar-icons:heart" width="30" height="30" />
-                {' '}
-              </a> */}
                   <Fav
                     place={activity.name}
                     username={username}

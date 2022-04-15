@@ -21,6 +21,7 @@
     "cross-env": "^7.0.3",
     "date-fns": "^2.28.0",
     "dotenv": "^16.0.0",
+    "formik": "^2.2.9",
     "loglevel": "^1.8.0",
     "npm-watch": "^0.11.0",
     "prop-types": "^15.8.1",
@@ -36,7 +37,8 @@
     "react-toastify": "^8.2.0",
     "reactjs-popup": "^2.0.5",
     "styled-components": "^5.3.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
