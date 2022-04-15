@@ -28,6 +28,7 @@ function SignUp() {
           <Button content="SIGN UP" />
         </ButtonContainer>
         <SignUpWith>OR</SignUpWith>
+
         <HorizontalRule />
         <ContinueButton />
       </MainContainer>
