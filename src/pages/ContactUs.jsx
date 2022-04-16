@@ -50,6 +50,7 @@ export default function ContactUs(props) {
               name="user_name"
               placeholder="Name"
               autoFocus
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
