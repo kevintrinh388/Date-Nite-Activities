@@ -11,17 +11,17 @@ import {
 import logo from '../../assets/google.svg';
 
 function LogoutButton() {
-  const [isAuthTypeGoogle, setAuthType] = useState(true);
+  const [isAuthTypeGoogle, setAuthType] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     try {
       const currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
-      if (currentUserProfile[AUTH_TYPE_KEY] === false) {
-        setAuthType(false);
+      if (currentUserProfile[AUTH_TYPE_KEY]) {
+        setAuthType(true);
       }
     } catch (e) {
-      log.info('No google profile information found');
+      log.info('There was a problem retrieving the user profile');
     }
   }, []);
 
