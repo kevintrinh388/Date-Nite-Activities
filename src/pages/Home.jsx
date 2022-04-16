@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import DisplayCards from '../components/DisplayCards';
 import Mynavbar1 from '../components/Mynavbar1/Mynavbar1';
 import MapDisplay from '../components/map/MapDisplay';
+import Searchbar from '../components/Searchbar';
 
 function Home() {
   const [activities, setActivities] = useState([]);
@@ -72,6 +73,7 @@ function Home() {
       }, [])}
 
       <div className="list">
+        <Searchbar searchButton={searchButton} userLocation={userLocation} />
         <br />
         <div className="filter">
           <select
