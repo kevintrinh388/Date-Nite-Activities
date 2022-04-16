@@ -2,14 +2,13 @@
 /* eslint-disable react/prop-types */
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { toast } from 'react-toastify';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import showToast, { TOAST_SUCCESS } from '../utils/toastHelper';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-toast.configure();
 export default function ContactUs(props) {
   const form = useRef();
 
@@ -27,7 +26,7 @@ export default function ContactUs(props) {
       .then(
         (result) => {
           console.log(result.text);
-          toast.success('Message Sent Successfully');
+          showToast('Message sent successfully', TOAST_SUCCESS);
         },
         (error) => {
           console.log(error.text);

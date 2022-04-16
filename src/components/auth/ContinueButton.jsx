@@ -3,18 +3,17 @@ import log from 'loglevel';
 import React from 'react';
 import { useGoogleLogin } from 'react-google-login';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import logo from '../../assets/google.svg';
 import refreshTokenSetup from '../../utils/refreshToken';
 import RouteConstants from '../../constants/RouteConstants';
 import 'react-toastify/dist/ReactToastify.css';
 import { CLIENT_ID, PROFILE_KEY } from '../../constants/AuthConstants';
+import showToast, { TOAST_ERROR, TOAST_SUCCESS } from '../../utils/toastHelper';
 
 function GoogleContinueButton() {
   const navigate = useNavigate();
 
   function saveGoogleUser(currentUser) {
-    console.log(currentUser);
     try {
       fetch('/save_google_user', {
         method: 'post',
@@ -26,7 +25,15 @@ function GoogleContinueButton() {
         body: JSON.stringify(
           currentUser,
         ),
-      }).then((response) => response.json());
+      }).then((response) => {
+        if (response.status === 200) {
+          showToast('Successfully logged in!', TOAST_SUCCESS);
+          response.json().then((data) => {
+            localStorage.setItem(PROFILE_KEY, JSON.stringify(data));
+          });
+          navigate(RouteConstants.Landing);
+        }
+      });
     } catch (e) {
       log.info('Failed to save google user');
     }
@@ -43,8 +50,8 @@ function GoogleContinueButton() {
       const currentUser = res.profileObj;
       saveGoogleUser(currentUser);
       log.info('Login Success: currentUser:', currentUser);
-      localStorage.setItem(PROFILE_KEY, JSON.stringify(currentUser));
       refreshTokenSetup(res);
+      showToast('Successfully signed in!', TOAST_SUCCESS);
       navigate(RouteConstants.Landing);
     } catch (e) {
       log.error('There was a problem trying to save user information');
@@ -53,15 +60,7 @@ function GoogleContinueButton() {
 
   const onFailure = (res) => {
     log.error('Login failed: res:', res);
-    toast.error('Whoops.. There was a problem signing in', {
-      position: 'bottom-center',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    showToast('Whoops.. There was a problem signing in', TOAST_ERROR);
   };
 
   const { signIn } = useGoogleLogin({
