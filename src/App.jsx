@@ -1,6 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
@@ -21,6 +22,7 @@ function App() {
         <Route path={RouteConstants.Dashboard} element={<Dashboard />} />
         <Route path={RouteConstants.Landing} element={<Landing />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

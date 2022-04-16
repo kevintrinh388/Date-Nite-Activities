@@ -3,7 +3,7 @@ import log from 'loglevel';
 import React from 'react';
 import { useGoogleLogin } from 'react-google-login';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import logo from '../../assets/google.svg';
 import refreshTokenSetup from '../../utils/refreshToken';
 import RouteConstants from '../../constants/RouteConstants';
@@ -75,13 +75,10 @@ function GoogleContinueButton() {
   });
 
   return (
-    <>
-      <button type="submit" onClick={signIn} className="button">
-        <img src={logo} alt="google login" className="icon" />
-        <span className="buttonText">Continue with Google</span>
-      </button>
-      <ToastContainer />
-    </>
+    <button type="submit" onClick={signIn} className="button">
+      <img src={logo} alt="google login" className="icon" />
+      <span className="buttonText">Continue with Google</span>
+    </button>
   );
 }
 
