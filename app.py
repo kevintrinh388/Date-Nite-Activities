@@ -139,7 +139,17 @@ def login_reg_users():
         print("user found")
         print(user.email)
         if user.is_google_user == False:
-            return make_response(flask.jsonify("Success"), 200)
+            return make_response(
+                flask.jsonify(
+                    {
+                        "name": user.username,
+                        "username": user.username,
+                        "email": user.email,
+                        "imageUrl": user.pic_url,
+                    }
+                ),
+                200,
+            )
         else:
             return make_response(flask.jsonify("Please Login through Google"), 202)
     else:
@@ -172,7 +182,6 @@ def save_user():
 def save_favorites():
     """Route for Saving Favorites"""
     data = flask.request.get_json(force=True)
-    print(data)
     username = data["username"]
     yelp_id = data["activityId"]
     user_favorites = (

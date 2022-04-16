@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import ContinueButton from '../components/auth/ContinueButton';
 import RouteConstants from '../constants/RouteConstants';
+import { PROFILE_KEY } from '../constants/AuthConstants';
 
 function Login() {
   const navigate = useNavigate();
@@ -84,6 +85,9 @@ function Login() {
           console.log(response);
           if (response.status === 200) {
             showToast('Successfully logged in!', TOAST_SUCCESS);
+            response.json().then((data) => {
+              localStorage.setItem(PROFILE_KEY, JSON.stringify(data));
+            });
             navigate(RouteConstants.Landing);
           } else if (response.status === 202) {
             showToast('Google Users: Please use the other door', TOAST_ERROR);
