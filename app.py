@@ -123,8 +123,30 @@ def save_google_user():
         db.session.add(user)
         db.session.commit()
     else:
-        print("This user already exists")
-    return flask.jsonify("Added user to the database")
+        return flask.jsonify(success=False)
+    return flask.jsonify(success=True)
+
+
+@app.route("/save_user", methods=["POST"])
+def save_user():
+    """Route for persisting regular user"""
+    data = flask.request.get_json(force=True)
+    username = data["email"].split("@")[0]
+    email = data["email"]
+    pic_url = data["imageUrl"]
+    user = User.query.filter_by(username=username).first()
+    if not user:
+        user = User(
+            username=username,
+            email=email,
+            pic_url=pic_url,
+            is_google_user=False,
+        )
+        db.session.add(user)
+        db.session.commit()
+    else:
+        return flask.jsonify(success=False)
+    return flask.jsonify(success=True)
 
 
 @app.route("/add_to_favorites", methods=["POST"])

@@ -1,17 +1,101 @@
-import React from 'react';
-import './Pages.css';
+import log from 'loglevel';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import validator from 'validator';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import ContinueButton from '../components/auth/ContinueButton';
-import Button from '../components/Button/ Button';
-import Input from '../components/Input';
 import RouteConstants from '../constants/RouteConstants';
+import './Pages.css';
 
 function SignUp() {
+  const DEFAULT_IMAGE_URL = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+  const TOAST_ERROR = 'TOAST_ERROR';
+  const TOAST_SUCCESS = 'TOAST_SUCCESS';
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const navigate = useNavigate();
 
   const login = () => {
     navigate(RouteConstants.Login);
+  };
+
+  const onEmailChange = (e) => {
+    setEmail(e.target?.value);
+  };
+
+  const onPasswordChange = (e) => {
+    setPassword(e.target?.value);
+  };
+
+  const showToast = (text, type) => {
+    if (type === TOAST_ERROR) {
+      toast.error(text, {
+        toastId: 'error',
+        position: 'bottom-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.success(text, {
+        toastId: 'success',
+        position: 'bottom-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
+  const validateFields = (e, p) => {
+    if (e === null || p === null || e === '' || p === '') {
+      showToast('Whoops.. Make sure your email and password are not empty', TOAST_ERROR);
+      return false;
+    }
+    if (!validator.isEmail(e)) {
+      showToast('Whoops.. Make sure you enter a valid email', TOAST_ERROR);
+      return false;
+    }
+    return true;
+  };
+
+  const signUp = () => {
+    if (validateFields(email, password)) {
+      const user = { email, password, imageUrl: DEFAULT_IMAGE_URL };
+      try {
+        fetch('/save_user', {
+          method: 'post',
+          mode: 'no-cors',
+          headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify(
+            user,
+          ),
+        }).then((response) => {
+          console.log(response);
+          if (response.status === 200) {
+            showToast('Successfully signed up!', TOAST_SUCCESS);
+            navigate(RouteConstants.Landing);
+          } else {
+            showToast('It looks like that user already exists... please try a different email', TOAST_ERROR);
+          }
+        });
+      } catch (e) {
+        log.info('Failed to sign up');
+        showToast('Whoops.. Something went wrong', TOAST_ERROR);
+      }
+    }
   };
 
   return (
@@ -20,11 +104,11 @@ function SignUp() {
         <WelcomeText>Sign Up</WelcomeText>
         <Text onClick={login}>Already have an account? Log in</Text>
         <InputContainer>
-          <Input type="text" placeholder="Email" />
-          <Input type="password" placeholder="Password" />
+          <input className="styledInput" id="email" type="text" placeholder="Email" onChange={onEmailChange} />
+          <input className="styledInput" id="password" type="password" placeholder="Password" onChange={onPasswordChange} />
         </InputContainer>
         <ButtonContainer>
-          <Button content="SIGN UP" />
+          <button className="styledButton" type="button" onClick={signUp}>SIGN UP</button>
         </ButtonContainer>
         <SignUpWith>OR</SignUpWith>
         <HorizontalRule />

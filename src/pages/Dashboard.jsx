@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Row, CardGroup } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
-import { ToastContainer } from 'react-toastify';
 import { Icon } from '@iconify/react';
 import Mynavbar2 from '../components/Mynavbar2';
 import './Pages.css';
@@ -66,7 +65,6 @@ function Dashboard() {
           ))}
         </Row>
       </div>
-      <ToastContainer />
     </div>
   );
 }
