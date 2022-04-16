@@ -9,13 +9,14 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 
 function Searchbar(props) {
-  const [address, setAdress] = useState('');
+  const [address, setAddress] = useState('');
   const [search, setSearch] = useState('');
   const { searchButton, userLocation } = props;
 
   const handleSelect = async (value) => {
     console.log(value);
     setSearch(value);
+    setAddress(value);
   };
 
   const searchPlace = () => {
@@ -27,7 +28,7 @@ function Searchbar(props) {
     <div>
       <PlacesAutocomplete
         value={address}
-        onChange={setAdress}
+        onChange={setAddress}
         onSelect={handleSelect}
       >
         {({
