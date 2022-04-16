@@ -3,10 +3,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import { toast } from 'react-toastify';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import TextField from '@mui/material/TextField';
+import showToast, { TOAST_ERROR, TOAST_SUCCESS } from '../utils/toastHelper';
 
 function GoogleCalendar(props) {
   const [dateTime, setDateTime] = useState(null);
@@ -41,28 +41,10 @@ function GoogleCalendar(props) {
 
   function buttonHandler() {
     if (dateTime == null) {
-      toast.error('No date entered', {
-        toastId: 'error1',
-        position: 'bottom-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      showToast('No date entered', TOAST_ERROR);
     } else {
       createCalendarEvent();
-      toast.success(`${dateTime} added to calendar`, {
-        toastId: 'success1',
-        position: 'bottom-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      showToast(`${dateTime} added to calendar`, TOAST_SUCCESS);
     }
   }
 
