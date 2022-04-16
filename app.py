@@ -118,6 +118,7 @@ def save_google_user():
             username=username,
             email=email,
             pic_url=pic_url,
+            is_google_user=True,
         )
         db.session.add(user)
         db.session.commit()
@@ -182,20 +183,20 @@ def load_favs():
         ]
     )
 
-@app.route("/add_to_calendar",methods=['GET','POST'])
+
+@app.route("/add_to_calendar", methods=["GET", "POST"])
 def add_to_calendar():
-    '''Route for adding event to google calendar'''
+    """Route for adding event to google calendar"""
     data = flask.request.get_json(force=True)
     print(data)
-    start = data['start']
-    end = data['end']
-    token = data['token']
-    place = data['place']
+    start = data["start"]
+    end = data["end"]
+    token = data["token"]
+    place = data["place"]
 
-    response = add_event(start,end,token,place)
+    response = add_event(start, end, token, place)
 
     return response
-
 
 
 app.run(
