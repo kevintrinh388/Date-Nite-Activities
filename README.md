@@ -43,6 +43,7 @@ React packages: react-router, react-bootstrap, react-icons, styled-components, l
   REACT_APP_SERVICE_ID=""
   REACT_APP_TEMPLATE_ID=""
   REACT_APP_PUBLIC_KEY=""
+  REACT_APP_CALENDAR_KEY=""
 ```
 
 4. Run the command below in the main directory to pull in all the node packages you need.
