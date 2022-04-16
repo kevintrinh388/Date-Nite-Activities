@@ -39,7 +39,6 @@ function GoogleContinueButton() {
       };
       res.grant(options);
       res.grantOfflineAccess(options);
-      console.log(res.getGrantedScopes());
       localStorage.setItem('accessToken', res.accessToken);
       const currentUser = res.profileObj;
       saveGoogleUser(currentUser);
