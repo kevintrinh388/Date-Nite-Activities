@@ -6,7 +6,6 @@ import { Icon } from '@iconify/react';
 import Mynavbar2 from '../components/Mynavbar2';
 import './Pages.css';
 import { PROFILE_KEY } from '../constants/AuthConstants';
-import GoogleCalendar from '../components/GoogleCalendar';
 
 function Dashboard() {
   const [favs, setFavs] = useState([]);
@@ -57,7 +56,6 @@ function Dashboard() {
                     <a href={activity.yelp_url} target="_blank" rel="noreferrer">
                       <Icon icon="simple-icons:yelp" width="20" height="30" />
                     </a>
-                    <GoogleCalendar place={activity.place} />
                   </Card>
                 </CardGroup>
               </Container>

@@ -207,21 +207,6 @@ def load_favs():
     )
 
 
-@app.route("/add_to_calendar", methods=["GET", "POST"])
-def add_to_calendar():
-    """Route for adding event to google calendar"""
-    data = flask.request.get_json(force=True)
-    print(data)
-    start = data["start"]
-    end = data["end"]
-    token = data["token"]
-    place = data["place"]
-
-    response = add_event(start, end, token, place)
-
-    return response
-
-
 app.run(
     debug=True,
     host="0.0.0.0",
