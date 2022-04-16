@@ -1,17 +1,105 @@
-import React from 'react';
+import log from 'loglevel';
+import React, { useState } from 'react';
 import './Pages.css';
 import styled from 'styled-components';
+import validator from 'validator';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import ContinueButton from '../components/auth/ContinueButton';
-import Button from '../components/Button/ Button';
-import Input from '../components/Input';
 import RouteConstants from '../constants/RouteConstants';
+import { PROFILE_KEY } from '../constants/AuthConstants';
 
 function Login() {
   const navigate = useNavigate();
+  // const DEFAULT_IMAGE_URL = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+  const TOAST_ERROR = 'TOAST_ERROR';
+  const TOAST_SUCCESS = 'TOAST_SUCCESS';
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  // redirect to signup page
   const signUp = () => {
     navigate(RouteConstants.SignUp);
+  };
+  const showToast = (text, type) => {
+    if (type === TOAST_ERROR) {
+      toast.error(text, {
+        toastId: 'error',
+        position: 'bottom-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.success(text, {
+        toastId: 'success',
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
+  const validateFields = (e, p) => {
+    if (e === null || p === null || e === '' || p === '') {
+      showToast('Whoops.. Make sure your email and password are not empty', TOAST_ERROR);
+      return false;
+    }
+    if (!validator.isEmail(e)) {
+      showToast('Whoops.. Make sure you enter a valid email', TOAST_ERROR);
+      return false;
+    }
+    return true;
+  };
+
+  const onEmailChange = (e) => {
+    setEmail(e.target?.value);
+  };
+
+  const onPasswordChange = (e) => {
+    setPassword(e.target?.value);
+  };
+
+  const logIn = () => {
+    if (validateFields(email, password)) {
+      const user = { email };
+      try {
+        fetch('/login_user', {
+          method: 'post',
+          mode: 'no-cors',
+          headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify(
+            user,
+          ),
+        }).then((response) => {
+          console.log(response);
+          if (response.status === 200) {
+            showToast('Successfully logged in!', TOAST_SUCCESS);
+            response.json().then((data) => {
+              localStorage.setItem(PROFILE_KEY, JSON.stringify(data));
+            });
+            navigate(RouteConstants.Landing);
+          } else if (response.status === 202) {
+            showToast('Google Users: Please use the other door', TOAST_ERROR);
+          } else {
+            showToast('Looks like the user does not exist... please try to Sign Up', TOAST_ERROR);
+          }
+        });
+      } catch (e) {
+        log.info('Failed to Sign In');
+        showToast('Whoops.. Something went wrong', TOAST_ERROR);
+      }
+    }
   };
 
   return (
@@ -20,11 +108,11 @@ function Login() {
         <WelcomeText>Log in</WelcomeText>
         <Text onClick={signUp}>Don&apos;t have an account? Sign up</Text>
         <InputContainer>
-          <Input type="text" placeholder="Email" />
-          <Input type="password" placeholder="Password" />
+          <input className="styledInput" id="email" type="text" placeholder="Email" onChange={onEmailChange} />
+          <input className="styledInput" id="password" type="password" placeholder="Password" onChange={onPasswordChange} />
         </InputContainer>
         <ButtonContainer>
-          <Button content="LOG IN" />
+          <button className="styledButton" type="button" onClick={logIn}>Login</button>
         </ButtonContainer>
         <LoginWith>OR</LoginWith>
         <HorizontalRule />

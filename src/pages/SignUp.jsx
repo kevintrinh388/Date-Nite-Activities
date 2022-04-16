@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import ContinueButton from '../components/auth/ContinueButton';
 import RouteConstants from '../constants/RouteConstants';
+import { PROFILE_KEY } from '../constants/AuthConstants';
 import './Pages.css';
 
 function SignUp() {
@@ -85,6 +86,30 @@ function SignUp() {
         }).then((response) => {
           console.log(response);
           if (response.status === 200) {
+            try {
+              fetch('/login_user', {
+                method: 'post',
+                mode: 'no-cors',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-type': 'application/json',
+                },
+                body: JSON.stringify(
+                  user,
+                ),
+              }).then((resp) => {
+                console.log(resp);
+                if (resp.status === 200) {
+                  showToast('Successfully logged in!', TOAST_SUCCESS);
+                  resp.json().then((data) => {
+                    localStorage.setItem(PROFILE_KEY, JSON.stringify(data));
+                  });
+                }
+              });
+            } catch (e) {
+              log.info('Failed to Load Profile');
+              showToast('Whoops.. Could not load profile', TOAST_ERROR);
+            }
             showToast('Successfully signed up!', TOAST_SUCCESS);
             navigate(RouteConstants.Landing);
           } else {
