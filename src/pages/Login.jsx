@@ -35,7 +35,7 @@ function Login() {
     } else {
       toast.success(text, {
         toastId: 'success',
-        position: 'bottom-center',
+        position: 'top-center',
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -86,7 +86,7 @@ function Login() {
             showToast('Successfully logged in!', TOAST_SUCCESS);
             navigate(RouteConstants.Landing);
           } else if (response.status === 202) {
-            showToast('Google Users: Please use the other door', TOAST_SUCCESS);
+            showToast('Google Users: Please use the other door', TOAST_ERROR);
           } else {
             showToast('Looks like the user does not exist... please try to Sign Up', TOAST_ERROR);
           }
