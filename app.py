@@ -120,12 +120,23 @@ def save_google_user():
             email=email,
             pic_url=pic_url,
             is_google_user=True,
+            confirmed=True,
         )
         db.session.add(user)
         db.session.commit()
-    else:
-        return make_response(flask.jsonify("User already exists, not persisting"), 200)
-    return make_response(flask.jsonify("Success"), 200)
+    return make_response(
+        flask.jsonify(
+            {
+                "name": user.username,
+                "username": user.username,
+                "email": user.email,
+                "imageUrl": user.pic_url,
+                "isGoogleUser": user.is_google_user,
+                "confirmed": user.confirmed,
+            }
+        ),
+        200,
+    )
 
 
 @app.route("/login_user", methods=["Post"])
@@ -146,6 +157,8 @@ def login_reg_users():
                         "username": user.username,
                         "email": user.email,
                         "imageUrl": user.pic_url,
+                        "isGoogleUser": user.is_google_user,
+                        "confirmed": user.confirmed,
                     }
                 ),
                 200,
@@ -170,6 +183,7 @@ def save_user():
             email=email,
             pic_url=pic_url,
             is_google_user=False,
+            confirmed=False,
         )
         db.session.add(user)
         db.session.commit()
@@ -232,6 +246,7 @@ def load_favs():
             for fav in favsList
         ]
     )
+
 
 @app.route("/add_to_calendar", methods=["GET", "POST"])
 def add_to_calendar():

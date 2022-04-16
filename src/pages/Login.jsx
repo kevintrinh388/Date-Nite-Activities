@@ -4,47 +4,19 @@ import './Pages.css';
 import styled from 'styled-components';
 import validator from 'validator';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import ContinueButton from '../components/auth/ContinueButton';
 import RouteConstants from '../constants/RouteConstants';
 import { PROFILE_KEY } from '../constants/AuthConstants';
+import showToast, { TOAST_ERROR, TOAST_SUCCESS } from '../utils/toastHelper';
 
 function Login() {
   const navigate = useNavigate();
-  // const DEFAULT_IMAGE_URL = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
-  const TOAST_ERROR = 'TOAST_ERROR';
-  const TOAST_SUCCESS = 'TOAST_SUCCESS';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // redirect to signup page
+
   const signUp = () => {
     navigate(RouteConstants.SignUp);
-  };
-  const showToast = (text, type) => {
-    if (type === TOAST_ERROR) {
-      toast.error(text, {
-        toastId: 'error',
-        position: 'bottom-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    } else {
-      toast.success(text, {
-        toastId: 'success',
-        position: 'top-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
   };
 
   const validateFields = (e, p) => {

@@ -4,18 +4,22 @@ import React, { useEffect, useState } from 'react';
 import { useGoogleLogout } from 'react-google-login';
 import { useNavigate } from 'react-router-dom';
 import RouteConstants from '../../constants/RouteConstants';
-import { CLIENT_ID, PROFILE_KEY } from '../../constants/AuthConstants';
+import {
+  CLIENT_ID, PROFILE_KEY,
+  AUTH_TYPE_KEY,
+} from '../../constants/AuthConstants';
 import logo from '../../assets/google.svg';
 
 function LogoutButton() {
-  const [isAuthTypeGoogle, setAuthType] = useState(false);
+  const [isAuthTypeGoogle, setAuthType] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     try {
       const currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
-      log.info('Detected google user: ', currentUserProfile);
-      setAuthType(true);
+      if (currentUserProfile[AUTH_TYPE_KEY] === false) {
+        setAuthType(false);
+      }
     } catch (e) {
       log.info('No google profile information found');
     }
