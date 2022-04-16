@@ -1,8 +1,14 @@
+from json import load
+import os
 import requests
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
+key = os.getenv('REACT_APP_CALENDAR_KEY')
 
 def add_event(start, end, token, place):
     '''add event'''
-    url = "https://www.googleapis.com/calendar/v3/calendars/primary/events?key=AIzaSyD-NmrVxw12QV6GJIynhXUIVpkQZ3Y13uo"
+    url = f"https://www.googleapis.com/calendar/v3/calendars/primary/events?key={key}"
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
