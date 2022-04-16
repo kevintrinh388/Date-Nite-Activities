@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Comp.css';
 import log from 'loglevel';
@@ -7,16 +6,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import { Form, FormControl } from 'react-bootstrap';
 import {
   IMAGE_KEY, PROFILE_KEY,
 } from '../../constants/AuthConstants';
 import RouteConstants from '../../constants/RouteConstants';
 import ContactUs from '../../pages/ContactUs';
 
-function Mynavbar1(props) {
-  const { searchButton, userLocation } = props;
-
+function Mynavbar() {
   const [profilePicture, setProfilePicture] = useState('');
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -32,11 +28,6 @@ function Mynavbar1(props) {
       log.info('No profile picture found');
     }
   }, []);
-
-  const searchHandler = (e) => {
-    e.preventDefault();
-    searchButton();
-  };
 
   return (
     <>
@@ -56,20 +47,6 @@ function Mynavbar1(props) {
             </Nav>
 
             <Nav>
-              <Navbar.Text data-test-id="navtext" className="navtext">Explore new places</Navbar.Text>
-              <Form className="d-flex" onSubmit={searchHandler}>
-                <FormControl
-                  type="search"
-                  placeholder="Search..."
-                  className="me-2"
-                  aria-label="Search"
-                  name="location"
-                  defaultValue="Atlanta, GA"
-                  onChange={(e) => {
-                    userLocation.current = e.target.value;
-                  }}
-                />
-              </Form>
               <NavDropdown
                 title={(
                   <img
@@ -94,9 +71,4 @@ function Mynavbar1(props) {
   );
 }
 
-Mynavbar1.propTypes = {
-  userLocation: PropTypes.string.isRequired,
-  searchButton: PropTypes.func.isRequired,
-};
-
-export default Mynavbar1;
+export default Mynavbar;

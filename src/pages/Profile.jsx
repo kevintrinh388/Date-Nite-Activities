@@ -1,11 +1,11 @@
 import React from 'react';
 import EditableProfile from '../components/editable_profile/EditableProfile';
-import Mynavbar2 from '../components/Mynavbar2';
+import Mynavbar from '../components/Mynavbar1/Mynavbar';
 
 function Profile() {
   return (
     <div>
-      <Mynavbar2 />
+      <Mynavbar />
       <EditableProfile />
     </div>
   );
