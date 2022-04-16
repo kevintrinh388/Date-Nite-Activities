@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Mynavbar1 from '../Mynavbar1';
+import Mynavbar from '../Mynavbar';
 import '@testing-library/jest-dom';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  render(<Mynavbar1 searchButton={jest.fn()} userLocation="" />, div);
+  render(<Mynavbar />, div);
 });

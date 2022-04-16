@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Row, CardGroup } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import { Icon } from '@iconify/react';
-import Mynavbar2 from '../components/Mynavbar2';
+import Mynavbar from '../components/Mynavbar1/Mynavbar';
 import './Pages.css';
 import { PROFILE_KEY } from '../constants/AuthConstants';
 import GoogleCalendar from '../components/GoogleCalendar';
@@ -33,7 +33,7 @@ function Dashboard() {
   }, []);
   return (
     <div>
-      <Mynavbar2 />
+      <Mynavbar />
       <div>
         <Row xs={1} md={2} className="g-4">
           {favs.slice(0, -1).map((activity) => (
