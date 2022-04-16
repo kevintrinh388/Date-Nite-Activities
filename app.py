@@ -4,6 +4,7 @@
 import os
 from dotenv import find_dotenv, load_dotenv
 import flask
+from flask import make_response
 from yelp import business_search
 from maps import maps_search
 from google_calendar import add_event
@@ -123,8 +124,8 @@ def save_google_user():
         db.session.add(user)
         db.session.commit()
     else:
-        return flask.jsonify(success=False)
-    return flask.jsonify(success=True)
+        return make_response(flask.jsonify("User already exists, not persisting"), 200)
+    return make_response(flask.jsonify("Success"), 200)
 
 
 @app.route("/save_user", methods=["POST"])
@@ -134,7 +135,7 @@ def save_user():
     username = data["email"].split("@")[0]
     email = data["email"]
     pic_url = data["imageUrl"]
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(email=email).first()
     if not user:
         user = User(
             username=username,
@@ -145,8 +146,8 @@ def save_user():
         db.session.add(user)
         db.session.commit()
     else:
-        return flask.jsonify(success=False)
-    return flask.jsonify(success=True)
+        return make_response(flask.jsonify("User already exists"), 403)
+    return make_response(flask.jsonify("Success"), 200)
 
 
 @app.route("/add_to_favorites", methods=["POST"])
