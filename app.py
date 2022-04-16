@@ -192,6 +192,34 @@ def save_user():
     return make_response(flask.jsonify("Success"), 200)
 
 
+@app.route("/update_user", methods=["POST"])
+def update_user():
+    """Route for updating regular user"""
+    data = flask.request.get_json(force=True)
+    email = data["email"]
+    new_username = data["newUsername"]
+    user = User.query.filter_by(email=email).first()
+
+    if user:
+        user.username = new_username
+        db.session.commit()
+    else:
+        return make_response(flask.jsonify("User does not exist"), 403)
+    return make_response(
+        flask.jsonify(
+            {
+                "name": user.username,
+                "username": user.username,
+                "email": user.email,
+                "imageUrl": user.pic_url,
+                "isGoogleUser": user.is_google_user,
+                "confirmed": user.confirmed,
+            }
+        ),
+        200,
+    )
+
+
 @app.route("/add_to_favorites", methods=["POST"])
 def save_favorites():
     """Route for Saving Favorites"""

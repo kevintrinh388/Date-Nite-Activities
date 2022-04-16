@@ -17,9 +17,7 @@ function LogoutButton() {
   useEffect(() => {
     try {
       const currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
-      if (currentUserProfile[AUTH_TYPE_KEY]) {
-        setAuthType(true);
-      }
+      setAuthType(currentUserProfile[AUTH_TYPE_KEY]);
     } catch (e) {
       log.info('There was a problem retrieving the user profile');
     }
