@@ -3,7 +3,7 @@ import log from 'loglevel';
 import React, { useState, useRef, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DisplayCards from '../components/DisplayCards';
-import Mynavbar1 from '../components/Mynavbar1/Mynavbar1';
+import Mynavbar from '../components/Mynavbar1/Mynavbar';
 import MapDisplay from '../components/map/MapDisplay';
 import Searchbar from '../components/Searchbar';
 
@@ -67,7 +67,7 @@ function Home() {
 
   return (
     <div className="App">
-      <Mynavbar1 searchButton={searchButton} userLocation={userLocation} />
+      <Mynavbar />
       {useEffect(() => {
         searchButton();
       }, [])}

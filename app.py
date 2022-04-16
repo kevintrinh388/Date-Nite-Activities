@@ -149,7 +149,7 @@ def login_reg_users():
     if user:
         print("user found")
         print(user.email)
-        if user.is_google_user == False:
+        if user.is_google_user is False:
             return make_response(
                 flask.jsonify(
                     {
