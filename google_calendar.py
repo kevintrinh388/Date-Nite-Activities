@@ -2,6 +2,8 @@ import requests
 import os
 from dotenv import load_dotenv, find_dotenv
 
+load_dotenv(find_dotenv())
+
 key = os.getenv('REACT_APP_CALENDAR_KEY')
 
 def add_event(start, end, token, place):
