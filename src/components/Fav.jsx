@@ -71,7 +71,6 @@ function Fav(props) {
     setClick(!isClick);
   }
 
-  console.log(activities);
   return (
     <Heart width="30" height="30" isClick={isClick} onClick={() => handleClick()} />
   );

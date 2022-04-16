@@ -73,7 +73,13 @@ function Home() {
       }, [])}
 
       <div className="list">
-        <Searchbar searchButton={searchButton} userLocation={userLocation} />
+        <Searchbar
+          searchButton={searchButton}
+          userLocation={userLocation}
+          searchTerm={searchTerm}
+          searchPrice={searchPrice}
+          searchRating={searchRating}
+        />
         <br />
         <div className="filter">
           <select
