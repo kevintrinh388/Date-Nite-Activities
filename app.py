@@ -128,6 +128,24 @@ def save_google_user():
     return make_response(flask.jsonify("Success"), 200)
 
 
+@app.route("/login_user", methods=["Post"])
+def login_reg_users():
+    """Route for Logging in regular user"""
+    data = flask.request.get_json(force=True)
+    # username = data["email"].split("@")[0]
+    email = data["email"]
+    user = User.query.filter_by(email=email).first()
+    if user:
+        print("user found")
+        print(user.email)
+        if user.is_google_user == False:
+            return make_response(flask.jsonify("Success"), 200)
+        else:
+            return make_response(flask.jsonify("Please Login through Google"), 202)
+    else:
+        return make_response(flask.jsonify("User does not exist"), 403)
+
+
 @app.route("/save_user", methods=["POST"])
 def save_user():
     """Route for persisting regular user"""
