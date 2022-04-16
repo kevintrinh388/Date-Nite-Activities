@@ -24,6 +24,10 @@ function Filter(props) {
           <select
             name="type"
             id="type"
+            onChange={(e) => {
+              props.searchTerm.current = e.target.value;
+              console.log(props.searchTerm);
+            }}
           >
             <option value="Restaurant">Restaurant</option>
             <option value="Activity">Activity</option>
@@ -32,6 +36,10 @@ function Filter(props) {
           <select
             name="rating"
             id="rating"
+            onChange={(e) => {
+              props.searchRating.current = e.target.value;
+              console.log(props.searchRating);
+            }}
           >
             <option value="1"> 1 and up </option>
             <option value="2"> 2 and up </option>
@@ -43,6 +51,10 @@ function Filter(props) {
           <select
             name="price"
             id="price"
+            onChange={(e) => {
+              props.searchPrice.current = e.target.value;
+              console.log(props.searchPrice);
+            }}
           >
             <option value="1,2,3,4"> $-$$$$ </option>
             <option value="1,2,3"> $-$$$ </option>

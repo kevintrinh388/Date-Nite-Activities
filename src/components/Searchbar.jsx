@@ -35,6 +35,9 @@ function Searchbar(props) {
       <Filter
         show={modalShow}
         onHide={() => setModalShow(false)}
+        searchTerm={searchTerm}
+        searchPrice={searchPrice}
+        searchRating={searchRating}
       />
       <PlacesAutocomplete
         value={address}

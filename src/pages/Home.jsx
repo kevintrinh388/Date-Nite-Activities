@@ -76,6 +76,9 @@ function Home() {
         <Searchbar
           searchButton={searchButton}
           userLocation={userLocation}
+          searchTerm={searchTerm}
+          searchPrice={searchPrice}
+          searchRating={searchRating}
         />
         <br />
         <div className="filter">
