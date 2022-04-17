@@ -41,7 +41,7 @@ function Login() {
 
   const logIn = () => {
     if (validateFields(email, password)) {
-      const user = { email };
+      const user = { email, password };
       try {
         fetch('/login_user', {
           method: 'post',
@@ -63,6 +63,8 @@ function Login() {
             navigate(RouteConstants.Landing);
           } else if (response.status === 202) {
             showToast('Google Users: Please use the other door', TOAST_ERROR);
+          } else if (response.status === 401) {
+            showToast('Wrong Password', TOAST_ERROR);
           } else {
             showToast('Looks like the user does not exist... please try to Sign Up', TOAST_ERROR);
           }

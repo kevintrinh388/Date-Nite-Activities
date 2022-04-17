@@ -2,6 +2,7 @@
 # pylint: disable=invalid-name
 """Control all server side logic and routes"""
 import os
+import hashlib
 from dotenv import find_dotenv, load_dotenv
 import flask
 from flask import make_response
@@ -145,24 +146,29 @@ def login_reg_users():
     data = flask.request.get_json(force=True)
     # username = data["email"].split("@")[0]
     email = data["email"]
+    password = str(data["password"])
     user = User.query.filter_by(email=email).first()
     if user:
         print("user found")
         print(user.email)
         if user.is_google_user is False:
-            return make_response(
-                flask.jsonify(
-                    {
-                        "name": user.username,
-                        "username": user.username,
-                        "email": user.email,
-                        "imageUrl": user.pic_url,
-                        "isGoogleUser": user.is_google_user,
-                        "confirmed": user.confirmed,
-                    }
-                ),
-                200,
-            )
+            hashedPassword = hashlib.sha256(bytes(password, "utf-8")).hexdigest()
+            if str(user.password) == str(hashedPassword):
+                return make_response(
+                    flask.jsonify(
+                        {
+                            "name": user.username,
+                            "username": user.username,
+                            "email": user.email,
+                            "imageUrl": user.pic_url,
+                            "isGoogleUser": user.is_google_user,
+                            "confirmed": user.confirmed,
+                        }
+                    ),
+                    200,
+                )
+            else:
+                return make_response(flask.jsonify("Password is wrong'"), 401)
         else:
             return make_response(flask.jsonify("Please Login through Google"), 202)
     else:
@@ -176,6 +182,7 @@ def save_user():
     username = data["email"].split("@")[0]
     email = data["email"]
     pic_url = data["imageUrl"]
+    password = hashlib.sha256(bytes(str(data["password"]), "utf-8")).hexdigest()
     user = User.query.filter_by(email=email).first()
     if not user:
         user = User(
@@ -184,6 +191,7 @@ def save_user():
             pic_url=pic_url,
             is_google_user=False,
             confirmed=False,
+            password=password,
         )
         db.session.add(user)
         db.session.commit()
