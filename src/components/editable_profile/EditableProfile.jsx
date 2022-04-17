@@ -13,7 +13,7 @@ function EditableProfile() {
   const [email, setEmail] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
   const [isAuthTypeGoogle, setAuthType] = useState(false);
-  const [confirmed, setConfirmed] = useState(false);
+  const [verified, setVerified] = useState(false);
 
   useEffect(() => {
     try {
@@ -22,7 +22,7 @@ function EditableProfile() {
       setEmail(currentUserProfile[EMAIL_KEY]);
       setProfilePicture(currentUserProfile[IMAGE_KEY]);
       setAuthType(currentUserProfile[AUTH_TYPE_KEY]);
-      setConfirmed(currentUserProfile[AUTH_TYPE_KEY]);
+      setVerified(currentUserProfile[AUTH_TYPE_KEY]);
     } catch (e) {
       log.info('There was a problem retrieving the user profile');
     }
@@ -70,10 +70,10 @@ function EditableProfile() {
             <img className="rounded-circle mt-5" alt="profilePicture" width="150px" src={profilePicture} />
             <span className="font-weight-bold">{username}</span>
             <span className="font-weight-bold">{email}</span>
-            { confirmed ? null : (
+            { verified ? null : (
               <span className="text-black-50">
                 <InfoCircleFill color="red" />
-                &nbsp;This account is not confirmed yet
+                &nbsp;This account is not verified yet
               </span>
             )}
             <span> </span>
