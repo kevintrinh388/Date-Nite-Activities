@@ -12,7 +12,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(80), unique=True, nullable=False)
     pic_url = db.Column(db.String(120))
     is_google_user = db.Column(db.Boolean, default=False, nullable=False)
-    confirmed = db.Column(db.Boolean, default=False, nullable=False)
+    verified = db.Column(db.Boolean, default=False, nullable=False)
     password = db.Column(db.String(256), nullable=True)
 
     def __repr__(self):
