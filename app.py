@@ -195,7 +195,7 @@ def verify_account(token):
         user.verified = True
         db.session.commit()
         flask.flash("You have verified your account. Thanks!", "success")
-    return flask.redirect(flask.url_for("landing"))
+    return flask.render_template("success.html")
 
 
 @app.route("/get_user", methods=["GET", "POST"])
