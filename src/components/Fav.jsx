@@ -110,7 +110,7 @@ function Fav(props) {
         }
       });
     } catch (e) {
-      alert('sorry');
+      console.log('sorry');
     }
   }
   useEffect(() => {
