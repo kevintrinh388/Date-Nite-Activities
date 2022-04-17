@@ -2,6 +2,7 @@ Flask
 requests
 python-dotenv
 Flask-Login
+Flask-Mail
 psycopg2-binary
 Flask-SQLALchemy
 oauthlib

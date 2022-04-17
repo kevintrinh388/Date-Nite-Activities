@@ -5,12 +5,16 @@ import os
 from dotenv import find_dotenv, load_dotenv
 import flask
 from flask import make_response
+from emails import create_email
+from tokenizer import confirm_token, generate_confirmation_token
+from flask_mail import Mail
 from yelp import business_search
 from maps import maps_search
 from google_calendar import add_event
 from models import db, Favorites, User
 
 app = flask.Flask(__name__)
+
 
 # set up a separate route to serve the index.html file generated
 # by create-react-app/npm run build.
@@ -24,10 +28,20 @@ bp = flask.Blueprint(
 
 load_dotenv(find_dotenv())
 
+app.secret_key = os.getenv("SECRET_KEY")
+
 # Point SQLAlchemy to your Heroku database
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("MY_DATABASE")
 # Gets rid of a warning
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+app.config["MAIL_SERVER"] = os.getenv("MAIL_SERVER")
+app.config["MAIL_USERNAME"] = os.getenv("MAIL_USERNAME")
+app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")
+app.config["MAIL_PORT"] = 465
+app.config["MAIL_USE_TLS"] = False
+app.config["MAIL_USE_SSL"] = True
+mail = Mail(app)
 
 db.init_app(app)
 
@@ -143,7 +157,6 @@ def save_google_user():
 def login_reg_users():
     """Route for Logging in regular user"""
     data = flask.request.get_json(force=True)
-    # username = data["email"].split("@")[0]
     email = data["email"]
     user = User.query.filter_by(email=email).first()
     if user:
@@ -169,6 +182,44 @@ def login_reg_users():
         return make_response(flask.jsonify("User does not exist"), 403)
 
 
+@app.route("/confirm/<token>")
+def verify_account(token):
+    try:
+        email = confirm_token(token)
+    except:
+        flask.flash("The verification link is invalid or has expired.", "danger")
+    user = User.query.filter_by(email=email).first_or_404()
+    if user.verified:
+        flask.flash("Account already verified. Please login.", "success")
+    else:
+        user.verified = True
+        db.session.commit()
+        flask.flash("You have verified your account. Thanks!", "success")
+    return flask.redirect(flask.url_for("landing"))
+
+
+@app.route("/get_user", methods=["GET", "POST"])
+def get_user():
+    """Route for fetching regular user"""
+    email = flask.request.get_json(force=True)
+    user = User.query.filter_by(email=email).first()
+    if user:
+        return make_response(
+            flask.jsonify(
+                {
+                    "name": user.username,
+                    "username": user.username,
+                    "email": user.email,
+                    "imageUrl": user.pic_url,
+                    "isGoogleUser": user.is_google_user,
+                    "verified": user.verified,
+                }
+            ),
+            200,
+        )
+    return make_response(flask.jsonify("User does not exist"), 403)
+
+
 @app.route("/save_user", methods=["POST"])
 def save_user():
     """Route for persisting regular user"""
@@ -187,6 +238,18 @@ def save_user():
         )
         db.session.add(user)
         db.session.commit()
+
+        token = generate_confirmation_token(user.email)
+        confirm_url = flask.url_for("verify_account", token=token, _external=True)
+        html = flask.render_template("activate.html", confirm_url=confirm_url)
+        subject = "Please confirm your email"
+        msg = create_email(
+            user,
+            subject=subject,
+            html=html,
+            sender=os.getenv("MAIL_USERNAME"),
+        )
+        mail.send(msg)
     else:
         return make_response(flask.jsonify("User already exists"), 403)
     return make_response(flask.jsonify("Success"), 200)
