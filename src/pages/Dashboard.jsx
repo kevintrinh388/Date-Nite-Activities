@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Row, CardGroup } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import { Icon } from '@iconify/react';
+import Rating from '@mui/material/Rating';
 import Mynavbar from '../components/Mynavbar1/Mynavbar';
 import './Pages.css';
 import { PROFILE_KEY } from '../constants/AuthConstants';
@@ -52,7 +53,12 @@ function Dashboard() {
                       ,
                       {activity.zipcode}
                     </Card.Subtitle>
-                    <Card.Text>{activity.rating}</Card.Text>
+                    <Rating
+                      name="read-only"
+                      value={activity.rating}
+                      readOnly
+                      precision={0.5}
+                    />
                     <Card.Text>{activity.range}</Card.Text>
                     <a href={activity.yelp_url} target="_blank" rel="noreferrer">
                       <Icon icon="simple-icons:yelp" width="20" height="30" />

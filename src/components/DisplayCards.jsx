@@ -5,6 +5,7 @@ import './Comp.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { Icon } from '@iconify/react';
+import Rating from '@mui/material/Rating';
 import Fav from './Fav';
 import {
   NAME_KEY, PROFILE_KEY,
@@ -33,7 +34,12 @@ function DisplayCards(props) {
                   ,
                   {activity.location.zip_code}
                 </Card.Subtitle>
-                <Card.Text>{activity.rating}</Card.Text>
+                <Rating
+                  name="read-only"
+                  value={activity.rating}
+                  readOnly
+                  precision={0.5}
+                />
                 <Card.Text>{activity.price}</Card.Text>
                 <Button
                   variant="primary"
