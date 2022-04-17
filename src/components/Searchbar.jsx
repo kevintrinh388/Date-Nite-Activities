@@ -13,7 +13,7 @@ import Filter from './Filter';
 
 function Searchbar(props) {
   const [address, setAddress] = useState('');
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState('Atlanta');
   const {
     searchButton, userLocation, searchTerm, searchPrice, searchRating,
   } = props;
