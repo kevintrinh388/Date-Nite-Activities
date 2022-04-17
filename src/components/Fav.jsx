@@ -5,7 +5,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Heart from 'react-animated-heart';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,12 +19,10 @@ function Fav(props) {
     place, username, rating, price, activityId, address, city, state, zipCode, yelpUrl,
     imageUrl,
   } = props;
-
+  // const [heartStatus, changeHeartStatus] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [activities, setActivities] = useState([]);
   const currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
-  const [isClick, setClick] = useState(false);
-
   const info = {
     username,
     place,
@@ -38,7 +36,7 @@ function Fav(props) {
     yelpUrl,
     imageUrl,
   };
-
+  const [isClick, setClick] = useState();
   function save(activities) {
     console.log(activities);
     try {
@@ -64,11 +62,72 @@ function Fav(props) {
       alert('sorry');
     }
   }
-
+  const deleteFavorites = (activities) => {
+    console.log(activities);
+    try {
+      fetch('/delete_favorites', {
+        method: 'post',
+        mode: 'no-cors',
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(
+          activities,
+          currentUserProfile,
+        ),
+      }).then((response) => {
+        if (response.status === 200) {
+          showToast('Activity deleted', TOAST_SUCCESS);
+          return true;
+        }
+        showToast('Activity Could not be deleted', TOAST_ERROR);
+        return false;
+      });
+    } catch (e) {
+      alert('sorry');
+    }
+  };
+  async function exists(activities) {
+    try {
+      await fetch('/check_favorites', {
+        method: 'post',
+        mode: 'no-cors',
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(
+          activities,
+          currentUserProfile,
+        ),
+      }).then((response) => response.json()).then((data) => {
+        if (data.message === false) {
+          setClick(false);
+        } else {
+          console.log('found');
+          setClick(true);
+        }
+      });
+    } catch (e) {
+      alert('sorry');
+    }
+  }
+  useEffect(() => {
+    exists(info);
+  }, []);
   function handleClick() {
-    setActivities(info);
-    save(info);
-    setClick(!isClick);
+    if (!isClick) {
+      setActivities(info);
+      save(info);
+      setClick(true);
+    } else {
+      console.log('should delete activity now');
+      const DidItDelete = deleteFavorites(info);
+      if (DidItDelete === true) {
+        setClick(false);
+      }
+    }
   }
 
   return (

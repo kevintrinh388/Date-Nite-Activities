@@ -258,6 +258,21 @@ def save_favorites():
     return flask.jsonify({"message": False})
 
 
+@app.route("/check_favorites", methods=["POST"])
+def check_favorites():
+    """Route for verify Existing Favorites"""
+    data = flask.request.get_json(force=True)
+    username = data["username"]
+    yelp_id = data["activityId"]
+    user_favorites = (
+        Favorites.query.filter_by(username=username).filter_by(yelp_id=yelp_id).first()
+    )
+    if not user_favorites:
+        return flask.jsonify({"message": False})
+    else:
+        return flask.jsonify({"message": True})
+
+
 @app.route("/load_favs", methods=["GET", "POST"])
 def load_favs():
     """Route for loading Favorites"""

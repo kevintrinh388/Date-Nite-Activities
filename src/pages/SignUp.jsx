@@ -76,6 +76,9 @@ function SignUp() {
                   resp.json().then((data) => {
                     localStorage.setItem(PROFILE_KEY, JSON.stringify(data));
                   });
+                } else {
+                  log.info('Failed to Load Profile');
+                  showToast('Whoops.. Could not load profile', TOAST_ERROR);
                 }
               });
             } catch (e) {
