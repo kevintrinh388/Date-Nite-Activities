@@ -2,7 +2,6 @@
 # pylint: disable=invalid-name
 """Control all server side logic and routes"""
 import os
-import hashlib
 from dotenv import find_dotenv, load_dotenv
 import flask
 from flask import make_response
@@ -121,7 +120,7 @@ def save_google_user():
             email=email,
             pic_url=pic_url,
             is_google_user=True,
-            confirmed=True,
+            verified=True,
         )
         db.session.add(user)
         db.session.commit()
@@ -133,7 +132,7 @@ def save_google_user():
                 "email": user.email,
                 "imageUrl": user.pic_url,
                 "isGoogleUser": user.is_google_user,
-                "confirmed": user.confirmed,
+                "verified": user.verified,
             }
         ),
         200,
@@ -146,29 +145,24 @@ def login_reg_users():
     data = flask.request.get_json(force=True)
     # username = data["email"].split("@")[0]
     email = data["email"]
-    password = str(data["password"])
     user = User.query.filter_by(email=email).first()
     if user:
         print("user found")
         print(user.email)
         if user.is_google_user is False:
-            hashedPassword = hashlib.sha256(bytes(password, "utf-8")).hexdigest()
-            if str(user.password) == str(hashedPassword):
-                return make_response(
-                    flask.jsonify(
-                        {
-                            "name": user.username,
-                            "username": user.username,
-                            "email": user.email,
-                            "imageUrl": user.pic_url,
-                            "isGoogleUser": user.is_google_user,
-                            "confirmed": user.confirmed,
-                        }
-                    ),
-                    200,
-                )
-            else:
-                return make_response(flask.jsonify("Password is wrong'"), 401)
+            return make_response(
+                flask.jsonify(
+                    {
+                        "name": user.username,
+                        "username": user.username,
+                        "email": user.email,
+                        "imageUrl": user.pic_url,
+                        "isGoogleUser": user.is_google_user,
+                        "verified": user.verified,
+                    }
+                ),
+                200,
+            )
         else:
             return make_response(flask.jsonify("Please Login through Google"), 202)
     else:
@@ -182,7 +176,6 @@ def save_user():
     username = data["email"].split("@")[0]
     email = data["email"]
     pic_url = data["imageUrl"]
-    password = hashlib.sha256(bytes(str(data["password"]), "utf-8")).hexdigest()
     user = User.query.filter_by(email=email).first()
     if not user:
         user = User(
@@ -190,8 +183,7 @@ def save_user():
             email=email,
             pic_url=pic_url,
             is_google_user=False,
-            confirmed=False,
-            password=password,
+            verified=False,
         )
         db.session.add(user)
         db.session.commit()
@@ -221,7 +213,7 @@ def update_user():
                 "email": user.email,
                 "imageUrl": user.pic_url,
                 "isGoogleUser": user.is_google_user,
-                "confirmed": user.confirmed,
+                "verified": user.verified,
             }
         ),
         200,
@@ -256,44 +248,6 @@ def save_favorites():
     else:
         return flask.jsonify({"message": True})
     return flask.jsonify({"message": False})
-
-
-@app.route("/check_favorites", methods=["POST"])
-def check_favorites():
-    """Route for verify Existing Favorites"""
-    data = flask.request.get_json(force=True)
-
-    username = data["username"]
-    yelp_id = data["activityId"]
-    user_favorites = (
-        Favorites.query.filter_by(username=username).filter_by(yelp_id=yelp_id).first()
-    )
-    if not user_favorites:
-        print("not found {}".format(data["place"]))
-        return flask.jsonify({"message": False})
-    else:
-        print("found {}".format(data["place"]))
-        return flask.jsonify({"message": True})
-
-
-@app.route("/delete_favorites", methods=["POST"])
-def delete_favorites():
-    """Route for delete Existing Favorites"""
-    try:
-        data = flask.request.get_json(force=True)
-        username = data["username"]
-        yelp_id = data["activityId"]
-        user_favorites = (
-            Favorites.query.filter_by(username=username)
-            .filter_by(yelp_id=yelp_id)
-            .first()
-        )
-        db.session.delete(user_favorites)
-        db.session.commit()
-        print("delete completed")
-        return make_response(flask.jsonify("Successful"), 200)
-    except:
-        return make_response(flask.jsonify("Something happened"), 400)
 
 
 @app.route("/load_favs", methods=["GET", "POST"])
