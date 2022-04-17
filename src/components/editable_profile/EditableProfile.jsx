@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { InfoCircleFill } from 'react-bootstrap-icons';
 import log from 'loglevel';
 import {
-  AUTH_TYPE_KEY, EMAIL_KEY, IMAGE_KEY, NAME_KEY, PROFILE_KEY,
+  AUTH_TYPE_KEY, EMAIL_KEY, IMAGE_KEY, NAME_KEY, PROFILE_KEY, VERIFIED_KEY,
 } from '../../constants/AuthConstants';
 import showToast, { TOAST_ERROR, TOAST_SUCCESS } from '../../utils/toastHelper';
 import LogoutButton from '../auth/LogoutButton';
@@ -17,12 +17,34 @@ function EditableProfile() {
 
   useEffect(() => {
     try {
-      const currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
+      let currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
       setUsername(currentUserProfile[NAME_KEY]);
       setEmail(currentUserProfile[EMAIL_KEY]);
       setProfilePicture(currentUserProfile[IMAGE_KEY]);
       setAuthType(currentUserProfile[AUTH_TYPE_KEY]);
-      setVerified(currentUserProfile[AUTH_TYPE_KEY]);
+      setVerified(currentUserProfile[VERIFIED_KEY]);
+
+      fetch('/get_user', {
+        method: 'post',
+        mode: 'no-cors',
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(
+          currentUserProfile[EMAIL_KEY],
+        ),
+      }).then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          response.json().then((data) => {
+            localStorage.setItem(PROFILE_KEY, JSON.stringify(data));
+            currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
+            setUsername(currentUserProfile[NAME_KEY]);
+            setVerified(currentUserProfile[VERIFIED_KEY]);
+          });
+        }
+      });
     } catch (e) {
       log.info('There was a problem retrieving the user profile');
     }
