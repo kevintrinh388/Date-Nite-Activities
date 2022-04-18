@@ -347,7 +347,27 @@ def delete_favorites():
         db.session.commit()
         print("delete completed")
         return make_response(flask.jsonify("Successful"), 200)
-    except:
+    except: # pylint: disable=bare-except
+        return make_response(flask.jsonify("Something happened"), 400)
+
+
+@app.route("/delete_favorites_dash", methods=["POST"])
+def delete_favorites_dash():
+    """Route for delete Existing Favorites from dashboard"""
+    try:
+        data = flask.request.get_json(force=True)
+        username = data["username"]
+        yelp_id = data["yelp_id"]
+        user_favorites = (
+            Favorites.query.filter_by(username=username)
+            .filter_by(yelp_id=yelp_id)
+            .first()
+        )
+        db.session.delete(user_favorites)
+        db.session.commit()
+        print("delete completed")
+        return make_response(flask.jsonify("Successful"), 200)
+    except: # pylint: disable=bare-except
         return make_response(flask.jsonify("Something happened"), 400)
 
 

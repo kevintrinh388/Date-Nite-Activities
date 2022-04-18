@@ -6,12 +6,16 @@ import { Icon } from '@iconify/react';
 import Rating from '@mui/material/Rating';
 import Mynavbar from '../components/Mynavbar1/Mynavbar';
 import './Pages.css';
-import { PROFILE_KEY } from '../constants/AuthConstants';
 import GoogleCalendar from '../components/GoogleCalendar';
+import Del from '../components/Delete';
+import {
+  PROFILE_KEY,
+} from '../constants/AuthConstants';
 
 function Dashboard() {
   const [favs, setFavs] = useState([]);
   const currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
+  // const username = currentUserProfile[NAME_KEY];
 
   useEffect(() => {
     fetch('/load_favs', {
@@ -64,6 +68,19 @@ function Dashboard() {
                       <Icon icon="simple-icons:yelp" width="20" height="30" />
                     </a>
                     <GoogleCalendar place={activity.place} />
+                    <Del
+                      username={activity.username}
+                      place={activity.place}
+                      rating={activity.rating}
+                      range={activity.range}
+                      address1={activity.address1}
+                      city={activity.city}
+                      state={activity.state}
+                      zipcode={activity.zipcode}
+                      yelp_id={activity.yelp_id}
+                      yelp_url={activity.yelp_url}
+                      image_url={activity.image_url}
+                    />
                   </Card>
                 </CardGroup>
               </Container>
