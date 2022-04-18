@@ -86,7 +86,7 @@ function SignUp() {
               showToast('Whoops.. Could not load profile', TOAST_ERROR);
             }
             showToast('Successfully signed up!', TOAST_SUCCESS);
-            navigate(RouteConstants.Landing);
+            navigate(RouteConstants.Home);
           } else {
             showToast('It looks like that user already exists... please try a different email', TOAST_ERROR);
           }
