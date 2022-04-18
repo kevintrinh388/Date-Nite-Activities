@@ -60,7 +60,7 @@ function Login() {
             response.json().then((data) => {
               localStorage.setItem(PROFILE_KEY, JSON.stringify(data));
             });
-            navigate(RouteConstants.Landing);
+            navigate(RouteConstants.Home);
           } else if (response.status === 202) {
             showToast('Google Users: Please use the other door', TOAST_ERROR);
           } else if (response.status === 401) {
