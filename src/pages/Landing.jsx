@@ -8,7 +8,7 @@ function Landing() {
   const navigate = useNavigate();
 
   const home = () => {
-    navigate(RouteConstants.Home);
+    navigate(RouteConstants.Login);
   };
 
   return (
