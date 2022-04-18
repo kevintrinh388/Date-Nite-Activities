@@ -53,22 +53,24 @@ function DisplayCards(props) {
                 </Button>
                 <br />
                 <div className="link_buttons">
-                  <a href={activity.url} target="_blank" rel="noreferrer">
+                  <a href={activity.url} target="_blank" rel="noreferrer" style={{ position: 'relative', left: '90px', top: '30px' }}>
                     <Icon className="yelpy" icon="simple-icons:yelp" width="30" height="40" />
                   </a>
-                  <Fav
-                    place={activity.name}
-                    username={username}
-                    rating={activity.rating}
-                    price={activity.price}
-                    activityId={activity.id}
-                    address={activity.location.address1}
-                    city={activity.location.city}
-                    state={activity.location.state}
-                    zipCode={activity.location.zip_code}
-                    yelpUrl={activity.url}
-                    imageUrl={activity.image_url}
-                  />
+                  <div style={{ position: 'relative', left: '80px', top: '2px' }}>
+                    <Fav
+                      place={activity.name}
+                      username={username}
+                      rating={activity.rating}
+                      price={activity.price}
+                      activityId={activity.id}
+                      address={activity.location.address1}
+                      city={activity.location.city}
+                      state={activity.location.state}
+                      zipCode={activity.location.zip_code}
+                      yelpUrl={activity.url}
+                      imageUrl={activity.image_url}
+                    />
+                  </div>
                 </div>
               </Card.Body>
             </Card>
