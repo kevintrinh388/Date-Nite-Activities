@@ -63,7 +63,7 @@ app.register_blueprint(bp)
 @app.route("/")
 def index():
     """Route for index page"""
-    return flask.redirect(flask.url_for("login"))
+    return flask.redirect(flask.url_for("landing"))
 
 
 @app.route("/login")

@@ -31,7 +31,7 @@ function GoogleContinueButton() {
           response.json().then((data) => {
             localStorage.setItem(PROFILE_KEY, JSON.stringify(data));
           });
-          navigate(RouteConstants.Landing);
+          navigate(RouteConstants.Home);
         }
       });
     } catch (e) {
