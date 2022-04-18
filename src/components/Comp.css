@@ -4,10 +4,6 @@
 }
 
 .link_buttons {
-  right: 30px;
-}
-
-.yelpy {
-  position: absolute;
-  margin-top: 31px;
+  display: flex;
+  justify-content: space-between;
 }

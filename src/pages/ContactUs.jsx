@@ -74,7 +74,7 @@ export default function ContactUs(props) {
           Close
         </Button>
         <Button variant="primary" onClick={sendEmail}>
-          Sumbit
+          Submit
         </Button>
       </Modal.Footer>
     </Modal>
