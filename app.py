@@ -242,7 +242,7 @@ def save_user():
         token = generate_confirmation_token(user.email)
         confirm_url = flask.url_for("verify_account", token=token, _external=True)
         html = flask.render_template("activate.html", confirm_url=confirm_url)
-        subject = "Please confirm your email"
+        subject = "Please verify your account"
         msg = create_email(
             user,
             subject=subject,
