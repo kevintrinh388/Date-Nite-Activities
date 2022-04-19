@@ -40,53 +40,59 @@ function Dashboard() {
     <div>
       <Mynavbar />
       <div>
-        <Row xs={1} md={2} className="g-4">
-          {favs.slice(0, -1).map((activity) => (
-            <div className="Display">
+        <div className="Dashboard">
+          <Row xs={2} md={3} className="g-3">
+            {favs.slice(0, -1).map((activity) => (
               <Container>
-                <CardGroup>
-                  <Card border="dark" style={{ width: '18rem', left: '70px' }}>
-                    <Card.Img className="Image" variant="top" src={activity.image_url} />
-                    <Card.Title>{activity.place}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">
-                      {activity.address}
-                      ,
-                      {activity.city}
-                      ,
-                      {activity.state}
-                      ,
-                      {activity.zipcode}
-                    </Card.Subtitle>
-                    <Rating
-                      name="read-only"
-                      value={activity.rating}
-                      readOnly
-                      precision={0.5}
-                    />
-                    <Card.Text>{activity.range}</Card.Text>
-                    <a href={activity.yelp_url} target="_blank" rel="noreferrer">
-                      <Icon icon="simple-icons:yelp" width="20" height="30" />
-                    </a>
-                    <GoogleCalendar place={activity.place} />
-                    <Del
-                      username={activity.username}
-                      place={activity.place}
-                      rating={activity.rating}
-                      range={activity.range}
-                      address1={activity.address1}
-                      city={activity.city}
-                      state={activity.state}
-                      zipcode={activity.zipcode}
-                      yelp_id={activity.yelp_id}
-                      yelp_url={activity.yelp_url}
-                      image_url={activity.image_url}
-                    />
-                  </Card>
-                </CardGroup>
+                <div className="Display">
+                  <CardGroup>
+                    <Card border="dark" style={{ width: '15rem', left: '70px' }}>
+                      <div className="DisplayImage">
+                        <Card.Img className="Image" variant="top" src={activity.image_url} />
+                      </div>
+                      <Card.Title>{activity.place}</Card.Title>
+                      <Card.Subtitle className="mb-2 text-muted">
+                        {activity.address}
+                        ,
+                        {activity.city}
+                        ,
+                        {activity.state}
+                        ,
+                        {activity.zipcode}
+                      </Card.Subtitle>
+                      <div className="Rating">
+                        <Rating
+                          name="read-only"
+                          value={activity.rating}
+                          readOnly
+                          precision={0.5}
+                        />
+                      </div>
+                      <Card.Text>{activity.range}</Card.Text>
+                      <a href={activity.yelp_url} target="_blank" rel="noreferrer">
+                        <Icon icon="simple-icons:yelp" width="20" height="30" />
+                      </a>
+                      <GoogleCalendar place={activity.place} />
+                      <Del
+                        username={activity.username}
+                        place={activity.place}
+                        rating={activity.rating}
+                        range={activity.range}
+                        address1={activity.address1}
+                        city={activity.city}
+                        state={activity.state}
+                        zipcode={activity.zipcode}
+                        yelp_id={activity.yelp_id}
+                        yelp_url={activity.yelp_url}
+                        image_url={activity.image_url}
+                      />
+                    </Card>
+                  </CardGroup>
+                </div>
               </Container>
-            </div>
-          ))}
-        </Row>
+            ))}
+          </Row>
+        </div>
       </div>
     </div>
   );
