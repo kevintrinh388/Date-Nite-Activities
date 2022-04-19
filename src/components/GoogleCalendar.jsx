@@ -60,7 +60,7 @@ function GoogleCalendar(props) {
           inputformat="yyyy-MM-dd HH:mm:ss"
           onChange={(e) => dateTimeHandler(e)}
         />
-        <div className="Calendar">
+        <div className="Calendar" style={{ width: '18rem', right: '70px' }}>
           <BsFillCalendar2PlusFill type="button" onClick={() => buttonHandler()}>
             Add to google calendar
           </BsFillCalendar2PlusFill>

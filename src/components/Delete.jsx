@@ -5,6 +5,7 @@ import { React, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { BsTrash } from 'react-icons/bs';
 import showToast, { TOAST_ERROR, TOAST_SUCCESS } from '../utils/toastHelper';
+import './Comp.css';
 
 function Del(props) {
   const {
@@ -58,7 +59,7 @@ function Del(props) {
   }
   console.log(deletes);
   return (
-    <div className="Delete">
+    <div className="Delete" style={{ width: '18rem', left: '70px' }}>
       <BsTrash type="button" onClick={() => handleClick()}>
         Delete
       </BsTrash>

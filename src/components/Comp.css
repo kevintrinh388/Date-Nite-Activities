@@ -13,10 +13,20 @@
 }
 
 .Calendar{
-  border-radius: 10ex;
+    position: abosolute;
+    border-radius: 10ex;
     width: 10%;
     cursor: pointer;
 }
 .Calendar:hover {
+  transform: scale(1.5);
+}
+.Delete {
+  border-radius: 10ex;
+  width: 10%;
+  cursor: pointer;
+
+}
+.Delete:hover {
   transform: scale(1.5);
 }
