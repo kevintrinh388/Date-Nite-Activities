@@ -44,9 +44,23 @@
 
 .Display {
   width: 320px;
-  height: 415px;
+  min-height: 455px;
+} 
+.DisplayImage {
+  width: '70vw';
+  height: '30vh';
 }
-
+.Rating {
+   text-align: center;
+}
+.Delete {
+    border-radius: 10ex;
+    width: 10%;
+    cursor: pointer;
+  }
+  .Delete:hover {
+    transform: scale(1.5);
+  }
 .Image {
   height: auto;
   max-height: 250px;

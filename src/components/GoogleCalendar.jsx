@@ -6,7 +6,9 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import TextField from '@mui/material/TextField';
+import { BsFillCalendar2PlusFill } from 'react-icons/bs';
 import showToast, { TOAST_ERROR, TOAST_SUCCESS } from '../utils/toastHelper';
+import './Comp.css';
 
 function GoogleCalendar(props) {
   const [dateTime, setDateTime] = useState(null);
@@ -58,7 +60,11 @@ function GoogleCalendar(props) {
           inputformat="yyyy-MM-dd HH:mm:ss"
           onChange={(e) => dateTimeHandler(e)}
         />
-        <button type="button" onClick={() => buttonHandler()}>Add to google calendar</button>
+        <div className="Calendar">
+          <BsFillCalendar2PlusFill type="button" onClick={() => buttonHandler()}>
+            Add to google calendar
+          </BsFillCalendar2PlusFill>
+        </div>
       </LocalizationProvider>
     </div>
   );

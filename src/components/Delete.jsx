@@ -3,6 +3,7 @@
 /* eslint-disable react/prop-types */
 import { React, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
+import { BsTrash } from 'react-icons/bs';
 import showToast, { TOAST_ERROR, TOAST_SUCCESS } from '../utils/toastHelper';
 
 function Del(props) {
@@ -57,10 +58,11 @@ function Del(props) {
   }
   console.log(deletes);
   return (
-
-    <button type="button" onClick={() => handleClick()}>
-      remove
-    </button>
+    <div className="Delete">
+      <BsTrash type="button" onClick={() => handleClick()}>
+        Delete
+      </BsTrash>
+    </div>
 
   );
 }
