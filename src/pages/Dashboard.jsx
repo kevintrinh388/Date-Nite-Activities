@@ -46,10 +46,8 @@ function Dashboard() {
               <Container>
                 <div className="Display">
                   <CardGroup>
-                    <Card border="dark" style={{ width: '15rem', left: '70px' }}>
-                      <div className="DisplayImage">
-                        <Card.Img className="Image" variant="top" src={activity.image_url} />
-                      </div>
+                    <Card border="dark" style={{ width: '18rem', left: '70px' }}>
+                      <Card.Img className="Image" variant="top" src={activity.image_url} />
                       <Card.Title>{activity.place}</Card.Title>
                       <Card.Subtitle className="mb-2 text-muted">
                         {activity.address}
