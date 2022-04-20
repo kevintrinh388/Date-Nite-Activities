@@ -46,8 +46,22 @@
   width: 320px;
   min-height: 455px;
 } 
+
 .Rating {
    text-align: center;
+}
+.Delete {
+    display: inline-block;
+    border-radius: 10ex;
+    width: 10%;
+    cursor: pointer;
+    align-items: center;
+  }
+  .Delete:hover {
+    transform: scale(1.5);
+  }
+.DisplayImage {
+  align-items: center;
 }
 
 .Image {
