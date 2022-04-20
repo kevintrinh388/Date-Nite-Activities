@@ -1,6 +1,9 @@
-from itsdangerous import URLSafeTimedSerializer
+# pylint: disable=bare-except
+# pylint: disable=missing-module-docstring
+# pylint: disable=missing-function-docstring
 
 import os
+from itsdangerous import URLSafeTimedSerializer
 from dotenv import find_dotenv, load_dotenv
 
 load_dotenv(find_dotenv())

@@ -1,13 +1,17 @@
 # pylint:disable=no-member
 # pylint: disable=invalid-name
+# pylint: disable=bare-except
+# pylint: disable=no-else-return
+# pylint: disable=consider-using-f-string
+
 """Control all server side logic and routes"""
 import os
 from dotenv import find_dotenv, load_dotenv
 import flask
 from flask import make_response
+from flask_mail import Mail
 from emails import create_email
 from tokenizer import confirm_token, generate_confirmation_token
-from flask_mail import Mail
 from yelp import business_search
 from maps import maps_search
 from google_calendar import add_event
@@ -184,6 +188,7 @@ def login_reg_users():
 
 @app.route("/confirm/<token>")
 def verify_account(token):
+    """Route for confirming Token"""
     try:
         email = confirm_token(token)
     except:
@@ -347,7 +352,7 @@ def delete_favorites():
         db.session.commit()
         print("delete completed")
         return make_response(flask.jsonify("Successful"), 200)
-    except: # pylint: disable=bare-except
+    except:
         return make_response(flask.jsonify("Something happened"), 400)
 
 
@@ -367,7 +372,7 @@ def delete_favorites_dash():
         db.session.commit()
         print("delete completed")
         return make_response(flask.jsonify("Successful"), 200)
-    except: # pylint: disable=bare-except
+    except:
         return make_response(flask.jsonify("Something happened"), 400)
 
 

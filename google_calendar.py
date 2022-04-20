@@ -1,5 +1,6 @@
-import requests
+# pylint: disable=missing-module-docstring
 import os
+import requests
 from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
