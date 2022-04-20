@@ -15,10 +15,10 @@
 .map {
   position: fixed;
   text-align: center;
-  height: 90vh;
+  height: 85vh;
   width: 55vw;
   right: 50vw;
   left: 40vw;
-  top: 15vh;
+  top: 12vh;
 }
 
