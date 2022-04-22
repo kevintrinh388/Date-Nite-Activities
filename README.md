@@ -11,6 +11,20 @@ that shows information about restraunts and activities for a certain location in
 
 React packages: react-router, react-bootstrap, react-icons, styled-components, loglevel, react-toastify
 
+# Features
+
+ 1. Google Log-In 
+ 2. Regular User Log-In
+ 3. Customizisation of user name when logged in through regular email 
+ 4. Auto-Complete search bar
+ 5. Filter out a restaurant, event, price and ratings 
+ 6. Find the place on the map
+ 7. Add Favorites to the dashboard
+ 8. Pick a date and time on the favorite restaraunt/activity
+ 9. Save the date/event to your google calendar
+ 10. Delete favorites from the dashboard and the home page
+ 11. Contact-Us for suggestions 
+
 ## Installation
 
 1. Clone project from git hub
