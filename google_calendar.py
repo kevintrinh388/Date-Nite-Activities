@@ -1,4 +1,4 @@
-# pylint: disable=missing-module-docstring
+"""Handles Google Calendar API requests"""
 import os
 import requests
 from dotenv import load_dotenv, find_dotenv
