@@ -91,7 +91,6 @@ function Login() {
         <LoginWith>OR</LoginWith>
         <HorizontalRule />
         <ContinueButton />
-        <Text>Forgot password?</Text>
       </MainContainer>
     </div>
   );
