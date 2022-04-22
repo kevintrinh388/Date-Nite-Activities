@@ -1,5 +1,3 @@
-# pylint: disable=missing-function-docstring
-
 """Unit tests"""
 import unittest
 from unittest.mock import MagicMock, patch
@@ -12,22 +10,24 @@ class FunctionTests(unittest.TestCase):
 
     maxDiff = None
 
-
     def test_maps_search(self):
+        """default map search"""
         result = maps_search("Atlanta")
         self.assertEqual(
             result,
             f"https://www.google.com/maps/embed/v1/search?key={MAPS_KEY}&q=Atlanta",
         )
-    
+
     def test_maps_search_state(self):
+        """searching by state"""
         result = maps_search("Florida")
         self.assertEqual(
             result,
             f"https://www.google.com/maps/embed/v1/search?key={MAPS_KEY}&q=Florida",
         )
-    
+
     def test_maps_search_zip(self):
+        """searching by zip code"""
         result = maps_search("30260")
         self.assertEqual(
             result,
@@ -35,13 +35,16 @@ class FunctionTests(unittest.TestCase):
         )
 
     def test_maps_search_address(self):
-        result = maps_search("1600 Pennsylvania Ave., Washington, D.C., 20500, USA ")
+        """searching by address"""
+        address = "1600 Pennsylvania Ave., Washington, D.C., 20500, USA"
+        result = maps_search(address)
         self.assertEqual(
             result,
-            f"https://www.google.com/maps/embed/v1/search?key={MAPS_KEY}&q=1600 Pennsylvania Ave., Washington, D.C., 20500, USA ",
+            f"https://www.google.com/maps/embed/v1/search?key={MAPS_KEY}&q={address}",
         )
 
     def test_maps_search_return_type(self):
+        """testing if return type is a string"""
         result = maps_search("Atlanta")
         self.assertEqual(
             type(result),

@@ -1,4 +1,4 @@
-# pylint: disable=missing-module-docstring
+"""Handles database connection"""
 import os
 from dotenv import load_dotenv, find_dotenv
 from flask import Flask
