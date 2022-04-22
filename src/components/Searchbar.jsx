@@ -39,10 +39,9 @@ function Searchbar(props) {
             <Paper
               component="form"
               sx={{
-                p: '2px 4px', display: 'flex', alignItems: 'center', width: 400,
+                p: '2px 4px', display: 'flex', alignItems: 'center', width: 450, marginLeft: '15px', marginTop: '15px',
               }}
             >
-              <IconButton sx={{ p: '10px' }} aria-label="menu" />
               <InputBase
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Search..."
@@ -58,7 +57,7 @@ function Searchbar(props) {
 
               {suggestions.map((suggestion) => {
                 const style = {
-                  backgroundColor: suggestion.active ? '#E4717A' : '#fff',
+                  backgroundColor: suggestion.active ? '#ec95b5' : '#fff',
                   position: 'relative',
                   top: '10px',
                 };

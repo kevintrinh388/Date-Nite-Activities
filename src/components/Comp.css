@@ -11,20 +11,23 @@
 .yelpy {
   float: right;
 }
+.yelpy:hover {
+  transform: scale(1.5);
+}
 
 .Calendar{
     float: inline-start;
     width: 5%;
     cursor: pointer;
     border: none;
-    color: blue;
+    color:rgb(16, 16, 31);
     padding: 15px 32px;
     margin: 5px;
 
     
 }
 .Calendar:hover {
-  transform: scale(1.5);
+  transform: scale(2.0);
 }
 .Delete{
   float: right;
@@ -33,7 +36,7 @@
   cursor: pointer;
   margin: 5px ;
   border: none;
-  color: blue;
+  color: rgb(16, 16, 31);
   padding: 15px 32px;
   
 }
