@@ -13,10 +13,35 @@
 }
 
 .Calendar{
-    border-radius: 10ex;
-    width: 10%;
+    float: inline-start;
+    width: 5%;
     cursor: pointer;
+    border: none;
+    color: blue;
+    padding: 15px 32px;
+    margin: 5px;
+
+    
 }
 .Calendar:hover {
   transform: scale(1.5);
+}
+.Delete{
+  float: right;
+  border-radius: 0ex;
+  width: 5%;
+  cursor: pointer;
+  margin: 5px ;
+  border: none;
+  color: blue;
+  padding: 15px 32px;
+  
+}
+.Delete:hover {
+  transform: scale(1.5);
+}
+
+.Buttons{
+  float: left;
+  display: inline;
 }

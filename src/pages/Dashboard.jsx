@@ -1,7 +1,6 @@
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from 'react';
-import { Card, Row, CardGroup } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
+import { Card, Row } from 'react-bootstrap';
 import { Icon } from '@iconify/react';
 import Rating from '@mui/material/Rating';
 import Mynavbar from '../components/Mynavbar1/Mynavbar';
@@ -15,7 +14,6 @@ import {
 function Dashboard() {
   const [favs, setFavs] = useState([]);
   const currentUserProfile = JSON.parse(localStorage.getItem(PROFILE_KEY));
-  // const username = currentUserProfile[NAME_KEY];
 
   useEffect(() => {
     fetch('/load_favs', {
@@ -37,29 +35,25 @@ function Dashboard() {
       });
   }, []);
   return (
-    <div>
+    <div className="Dashboard">
       <Mynavbar />
       <div>
-        <div className="Dashboard">
-          <Row xs={2} md={3} className="g-3">
+        <div className="Display">
+          <Row xs={3} md={3} className="g-3">
             {favs.slice(0, -1).map((activity) => (
-              <Container>
-                <div className="Display">
-                  <CardGroup>
-                    <Card border="dark" style={{ width: '18rem', left: '70px' }}>
-                      <div className="DisplayImage">
-                        <Card.Img className="Image" variant="top" src={activity.image_url} />
-                      </div>
-                      <Card.Title>{activity.place}</Card.Title>
-                      <Card.Subtitle className="mb-2 text-muted">
-                        {activity.address}
-                        ,
-                        {activity.city}
-                        ,
-                        {activity.state}
-                        ,
-                        {activity.zipcode}
-                      </Card.Subtitle>
+              <div className="mosaic">
+                <div className="box">
+                  <img src={activity.image_url} />
+                  <div className="box-content">
+                    <Card.Title>{activity.place}</Card.Title>
+                    <span className="post">
+                      {activity.address}
+                      ,
+                      {activity.city}
+                      ,
+                      {activity.state}
+                      ,
+                      {activity.zipcode}
                       <div className="Rating">
                         <Rating
                           name="read-only"
@@ -72,24 +66,24 @@ function Dashboard() {
                       <a href={activity.yelp_url} target="_blank" rel="noreferrer">
                         <Icon icon="simple-icons:yelp" width="20" height="30" />
                       </a>
-                      <GoogleCalendar place={activity.place} />
-                      <Del
-                        username={activity.username}
-                        place={activity.place}
-                        rating={activity.rating}
-                        range={activity.range}
-                        address1={activity.address1}
-                        city={activity.city}
-                        state={activity.state}
-                        zipcode={activity.zipcode}
-                        yelp_id={activity.yelp_id}
-                        yelp_url={activity.yelp_url}
-                        image_url={activity.image_url}
-                      />
-                    </Card>
-                  </CardGroup>
+                    </span>
+                    <GoogleCalendar place={activity.place} />
+                    <Del
+                      username={activity.username}
+                      place={activity.place}
+                      rating={activity.rating}
+                      range={activity.range}
+                      address1={activity.address1}
+                      city={activity.city}
+                      state={activity.state}
+                      zipcode={activity.zipcode}
+                      yelp_id={activity.yelp_id}
+                      yelp_url={activity.yelp_url}
+                      image_url={activity.image_url}
+                    />
+                  </div>
                 </div>
-              </Container>
+              </div>
             ))}
           </Row>
         </div>
