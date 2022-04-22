@@ -71,7 +71,6 @@ function Home() {
       {useEffect(() => {
         searchButton();
       }, [])}
-
       <div className="list">
         <Searchbar
           searchButton={searchButton}

@@ -6,7 +6,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import TextField from '@mui/material/TextField';
-import { BsFillCalendar2PlusFill } from 'react-icons/bs';
+import { BsCalendarPlus } from 'react-icons/bs';
 import showToast, { TOAST_ERROR, TOAST_SUCCESS } from '../utils/toastHelper';
 import './Comp.css';
 
@@ -53,17 +53,19 @@ function GoogleCalendar(props) {
   return (
     <div>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DateTimePicker
-          renderInput={(text) => <TextField {...text} />}
-          label="Enter date"
-          value={dateTime}
-          inputformat="yyyy-MM-dd HH:mm:ss"
-          onChange={(e) => dateTimeHandler(e)}
-        />
-        <div className="Calendar" style={{ width: '18rem', right: '70px' }}>
-          <BsFillCalendar2PlusFill type="button" onClick={() => buttonHandler()}>
+        <div className="Buttons">
+          <DateTimePicker
+            renderInput={(text) => <TextField {...text} />}
+            label="Enter date"
+            value={dateTime}
+            inputformat="yyyy-MM-dd HH:mm:ss"
+            onChange={(e) => dateTimeHandler(e)}
+          />
+        </div>
+        <div className="Calendar">
+          <BsCalendarPlus color="blue" type="button" onClick={() => buttonHandler()}>
             Add to google calendar
-          </BsFillCalendar2PlusFill>
+          </BsCalendarPlus>
         </div>
       </LocalizationProvider>
     </div>
