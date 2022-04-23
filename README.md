@@ -7,7 +7,7 @@ Link to heroku - https://banana-crisp-94556.herokuapp.com/
 Link to heroku(Sprint 2) - https://date-nite-activities.herokuapp.com/
 
 DateNite is a date planning web application
-that shows information about restraunts and activities for a certain location including links to their yelp page and an interactive map. This dat ais dynamically fetched using the GoogleMaps API and Yelp API.
+that shows information about restaurants and activities for a certain location including links to their yelp page and an interactive map. This data is dynamically fetched using the GoogleMaps API and Yelp API.
 
 React packages: react-router, react-bootstrap, react-icons, styled-components, loglevel, react-toastify
 
